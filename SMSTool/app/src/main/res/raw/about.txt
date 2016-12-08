@@ -1,0 +1,5 @@
+This %app_name% is developed by %dev_name%.
+
+Suggestions and enhancements are always welcome :)
+
+You can drop in your comments/bug reports @ %mail_id% 

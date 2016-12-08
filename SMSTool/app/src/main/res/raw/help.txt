@@ -1,0 +1,7 @@
+-> This is an application that displays the SMS count for every person to whom message is sent to / from whom message is received, in the specified date interval
+
+-> The date interval can be specified by clicking the buttons displayed below <From Date:> and <To date:>
+
+-> The result is sorted with <Sent Count> in Descending order
+
+-> The result would be based on the SMS that is currently present in your device's database.(The same as messages displayed by whatever SMS application that you are using)

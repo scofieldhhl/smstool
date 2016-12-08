@@ -5,4 +5,21 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="spinnerTitle">Retrieving Contacts</string>
+    <string name="blank_photo">blank photo</string>
+    <string name="total_blank">TOTAL: 0 INCOMING, 0 OUTGOING MESSAGES</string>
+    <string name="total">TOTAL: %1$d INCOMING, %2$d OUTGOING MESSAGES</string>
+
+
+    <string name="frm_dt">From Date:</string>
+    <string name="to_dt">To Date:</string>
+    <string name="pop_hlp_ttl">Help</string>
+    <string name="pop_abt_ttl">About</string>
+    <string name="dev_name">Droidstein The DNA</string>
+    <string name="mail_id">$TBD$</string>
+    <string name="frm_to_err">From date is Future of To Date</string>
+    <string name="Future_Year">Future_Year</string>
+    <string name="Future_Month">Future_Month</string>
+    <string name="Future_Day">Future_Day</string>
 </resources>

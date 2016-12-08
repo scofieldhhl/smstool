@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TemplateTitle">
+        <!-- 标题文案 -->
+        <attr name="titleText" format="string" />
+        <!-- 是否有back按钮 -->
+        <attr name="canBack" format="boolean" />
+        <!-- back按钮文案 -->
+        <attr name="backText" format="string" />
+        <!-- 右侧更多功能按钮图片 -->
+        <attr name="moreImg" format="reference" />
+        <!-- 右侧更多功能按钮文字 -->
+        <attr name="moreText" format="string" />
+    </declare-styleable>
+    <declare-styleable name="GifView">
+        <attr name="gif" format="reference" />
+        <attr name="paused" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomTheme">
+        <attr name="gifViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="IconEditTextView">
+        <attr name="edtIcon" format="integer" />
+        <attr name="edtHint" format="string" />
+        <attr name="isHideIcon" format="boolean" />
+        <attr name="isIconGone" format="boolean" />
+        <attr name="enable" format="boolean" />
+        <attr name="focusable" format="boolean" />
+        <attr name="maxLength" format="integer" />
+        <attr name="text" format="string" />
+        <attr name="isPhoneNum" format="boolean" />
+        <attr name="isNumeric" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="IconImageView">
+        <attr name="src" format="integer" />
+        <attr name="isDelGone" format="boolean" />
+    </declare-styleable>
+</resources>

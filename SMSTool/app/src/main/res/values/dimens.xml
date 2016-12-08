@@ -6,4 +6,35 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="list_item_margin_180">180dp</dimen>
+    <dimen name="list_item_margin_140">140dp</dimen>
+    <dimen name="list_item_margin_100">100dp</dimen>
+    <dimen name="list_item_margin_80">80dp</dimen>
+    <dimen name="list_item_margin_43">43dp</dimen>
+    <dimen name="list_item_margin_24">24dp</dimen>
+    <dimen name="list_item_margin_20">20dp</dimen>
+    <dimen name="list_item_margin_16">16dp</dimen>
+    <dimen name="list_item_margin_14">14dp</dimen>
+    <dimen name="list_item_margin_12">12dp</dimen>
+    <dimen name="list_item_margin_8">8dp</dimen>
+    <dimen name="list_item_margin_4">4dp</dimen>
+    <dimen name="list_item_margin_2">2dp</dimen>
+
+    <dimen name="simpletooltip_overlay_circle_offset">10dp</dimen>
+    <dimen name="simpletooltip_margin">10dp</dimen>
+    <dimen name="simpletooltip_padding">8dp</dimen>
+    <dimen name="simpletooltip_arrow_width">30dp</dimen>
+    <dimen name="simpletooltip_arrow_height">15dp</dimen>
+    <dimen name="simpletooltip_animation_padding">4dp</dimen>
+
+    <dimen name="btn_height_40">40dp</dimen>
+    <dimen name="text_size_45">45sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="apply_avatar_margin_32">32dp</dimen>
+    <dimen name="item_height">48dp</dimen>
 </resources>
