@@ -1,6 +1,5 @@
 package com.systemteam.smstool.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.PhoneLookup;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -29,6 +29,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.systemteam.smstool.R;
+import com.systemteam.smstool.bean.Customer;
+import com.systemteam.smstool.provider.db.CustomerHelper;
+import com.systemteam.smstool.provider.db.DbUtil;
+import com.systemteam.smstool.util.LogTool;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,8 +43,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
-public class SMS15Activity extends Activity
+public class SMS15Activity extends AppCompatActivity
 {
 	String srt_ordr = SNT;
 	boolean srt_typ = DEC;
@@ -301,21 +306,38 @@ public class SMS15Activity extends Activity
 	 */
 	public void generate()
 	{
+		CustomerHelper mHelper = DbUtil.getCustomerHelper();
+		List<Customer> customers = mHelper.queryAll();
+		if(customers == null || customers.size() == 0){
+			LogTool.e("no records!");
+//			return;
+		}
+		String[] arrContent = new String[customers.size()];
+		HashMap<String, String> infoMap = new HashMap<>();
+		for(int i = 0; i < customers.size(); i++){
+			Customer customer = customers.get(i);
+			arrContent[i] = customer.getPhoneNum();
+			infoMap.put(customer.getPhoneNum(), customer.getName());
+			LogTool.d("USERP:" + customer.getPhoneNum());
+		}
+
 		dt_clear();
 		//Log.d("sms8e", "gen_en");
-		cur = managedQuery(uri, columns, // Which columns to return
-				"date BETWEEN " + ms_frm + " AND " + ms_to
-						+ ") GROUP BY (address),(type", // WHERE clause; which
-														// rows to return(all
-														// rows)
-				null, // WHERE clause selection arguments (none)
-				"address"); // Order-by clause (ascending by name)
+			cur = managedQuery(uri, columns, // Which columns to return
+					"date BETWEEN " + ms_frm + " AND " + ms_to
+							+ ") GROUP BY (address),(type", // WHERE clause; which
+					// rows to return(all
+					// rows)
+					arrContent, // WHERE clause selection arguments (none)
+					"address"); // Order-by clause (ascending by name)
 		//Log.d("sms8e", "qr_dn");
 		cur.moveToFirst();
 		while (!cur.isAfterLast())
 		{
 			nmbr = cur.getString(0);
 			namestr = getnme(nmbr);
+			LogTool.d("PHONE:" + nmbr);
+			LogTool.d("PHONE:" + nmbr.length());
 			//Log.d("sms8e", "getnme_dn" + nmbr);
 			if (!nmstr.contains(namestr))
 			{
@@ -648,4 +670,6 @@ String msgtxt = preferences.getString("msgtxt","");
 
 		 startActivity(smsIntent);
 	 }
+
+
 }

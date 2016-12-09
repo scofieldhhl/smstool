@@ -12,10 +12,10 @@
     <string name="total">TOTAL: %1$d INCOMING, %2$d OUTGOING MESSAGES</string>
 
 
-    <string name="frm_dt">From Date:</string>
-    <string name="to_dt">To Date:</string>
-    <string name="pop_hlp_ttl">Help</string>
-    <string name="pop_abt_ttl">About</string>
+    <string name="frm_dt">开始日期:</string>
+    <string name="to_dt">结束日期:</string>
+    <string name="pop_hlp_ttl">帮助</string>
+    <string name="pop_abt_ttl">关于</string>
     <string name="dev_name">Droidstein The DNA</string>
     <string name="mail_id">$TBD$</string>
     <string name="frm_to_err">From date is Future of To Date</string>

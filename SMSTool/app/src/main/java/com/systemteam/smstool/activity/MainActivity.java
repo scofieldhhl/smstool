@@ -12,43 +12,41 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.systemteam.smstool.R;
+import com.systemteam.smstool.bean.Customer;
+import com.systemteam.smstool.provider.db.CustomerHelper;
+import com.systemteam.smstool.provider.db.DbUtil;
 import com.systemteam.smstool.util.LogTool;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SmsObserver smsObserver;
+    private ListView mLvInfo;
+    ArrayAdapter mAdpaterInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,18 +57,52 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*btn = (Button) findViewById(R.id.btn);
-        btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                test();
-            }
-        });*/
-        new InitTask().execute("");
         smsObserver = new SmsObserver(this, smsHandler);
         getContentResolver().registerContentObserver(SMS_INBOX, true,
                 smsObserver);
+
+        initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    @Override
+    protected void initView() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                startActivity(new Intent(MainActivity.this, UserAddActivity.class));
+            }
+        });
+        mLvInfo = (ListView) findViewById(R.id.lv_list);
+    }
+
+    @Override
+    protected void initData() {
+        CustomerHelper mHelper = DbUtil.getCustomerHelper();
+        List<Customer> customers = mHelper.queryAll();
+        if(customers != null && customers.size() > 0){
+            String ITEM = "%s ( %s )";
+            String[] arrContent = new String[customers.size()];
+            for(int i = 0; i < customers.size(); i++){
+                Customer customer = customers.get(i);
+                arrContent[i] = String.format(Locale.US, ITEM, customer.getName(), customer.getPhoneNum());
+            }
+            mAdpaterInfo = new ArrayAdapter(this, R.layout.item_list_info, arrContent);
+            mLvInfo.setAdapter(mAdpaterInfo);
+            mLvInfo.setDivider(getResources().getDrawable(R.drawable.xml_list_divider));
+            mLvInfo.setDividerHeight(1);
+            mAdpaterInfo.notifyDataSetChanged();
+        }else {
+            LogTool.e("no records!");
+        }
     }
 
     @Override
@@ -113,6 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            startActivity(new Intent(MainActivity.this, UserAddActivity.class));
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(MainActivity.this, SMS15Activity.class));
         } else if (id == R.id.nav_slideshow) {

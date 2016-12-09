@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user_add"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/item_spacing"
+    android:paddingRight="@dimen/item_spacing"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.systemteam.smstool.activity.UserAddActivity">
+
+    <TableLayout
+        android:id="@+id/tl_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="0"
+        android:stretchColumns="1"
+        android:collapseColumns="2"
+        android:padding="3dip">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/name" />
+
+            <com.systemteam.smstool.view.IconEditTextView
+                android:id="@+id/iet_name"
+                style="@style/iet_height_wrap_content_info"
+                app:edtHint=""
+                app:edtIcon="@drawable/ic_name_blue_24dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/sex" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/list_item_margin_20"
+                    android:checked="true"
+                    android:text="@string/sex_man" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonw2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex_woman" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/phoneNum" />
+
+            <com.systemteam.smstool.view.IconEditTextView
+                android:id="@+id/iet_phonenum"
+                style="@style/iet_height_wrap_content_info"
+                app:edtIcon="@drawable/ic_phone_blue_24dp"
+                app:isPhoneNum="true"
+                app:maxLength="20" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/homeAddress" />
+
+            <com.systemteam.smstool.view.IconEditTextView
+                android:id="@+id/iet_homeAddress"
+                style="@style/iet_height_wrap_content_info"
+                app:edtHint=""
+                app:edtIcon="@drawable/ic_country_blue_24dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/companyAddress" />
+
+            <com.systemteam.smstool.view.IconEditTextView
+                android:id="@+id/iet_companyAddress"
+                style="@style/iet_height_wrap_content_info"
+                app:edtHint=""
+                app:edtIcon="@drawable/ic_store_blue_24dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title_language"
+                style="@style/tv_size14_height_32"
+                android:text="@string/remarks" />
+
+            <com.systemteam.smstool.view.IconEditTextView
+                android:id="@+id/iet_remarks"
+                style="@style/iet_height_wrap_content_info"
+                app:edtHint=""
+                app:edtIcon="@drawable/ic_language_blue_24dp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tl_info"
+        android:text="@string/submit" />
+
+</RelativeLayout>

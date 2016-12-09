@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -30,6 +31,47 @@
     <style name="iet_height_48">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/item_height</item>
+    </style>
+
+    <style name="iet_height_wrap_content_store">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">@dimen/item_spacing</item>
+    </style>
+
+    <style name="tv_size14_height_32">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/apply_avatar_margin_32</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/text_black_54</item>
+        <item name="android:gravity">center|bottom</item>
+    </style>
+
+    <style name="spacing_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/text_black_30</item>
+    </style>
+
+    <style name="iet_height_wrap_content_info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <style name="tv_size14_match_parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/text_black_54</item>
+        <item name="android:gravity">left</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
 
 </resources>

@@ -8,37 +8,34 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * 类描述：
  * 创建人：Administrator
- * 创建时间：2016/12/5 19:52
+ * 创建时间：2016/12/9 11:25
  */
 @Entity
-public class Customer {
+public class User {
     @Id
     public Long id;
     public String name;
     public String nickName;
     @NotNull
     public String phoneNum;
-    public int age;
-    public boolean sex;//性别
+    public int sex;//性别
     public String homeAddress;
     public String companyAddress;
     public String remarks;// 备注
-    @Generated(hash = 60584707)
-    public Customer(Long id, String name, String nickName, @NotNull String phoneNum,
-            int age, boolean sex, String homeAddress, String companyAddress,
-            String remarks) {
+    @Generated(hash = 1671341651)
+    public User(Long id, String name, String nickName, @NotNull String phoneNum,
+            int sex, String homeAddress, String companyAddress, String remarks) {
         this.id = id;
         this.name = name;
         this.nickName = nickName;
         this.phoneNum = phoneNum;
-        this.age = age;
         this.sex = sex;
         this.homeAddress = homeAddress;
         this.companyAddress = companyAddress;
         this.remarks = remarks;
     }
-    @Generated(hash = 60841032)
-    public Customer() {
+    @Generated(hash = 586692638)
+    public User() {
     }
     public Long getId() {
         return this.id;
@@ -64,16 +61,10 @@ public class Customer {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-    public int getAge() {
-        return this.age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public boolean getSex() {
+    public int getSex() {
         return this.sex;
     }
-    public void setSex(boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
     public String getHomeAddress() {
@@ -94,5 +85,4 @@ public class Customer {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
-
 }

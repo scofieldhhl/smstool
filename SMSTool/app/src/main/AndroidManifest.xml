@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_MMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity
+        <!--
+        <activity
             android:name=".statistics.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,15 +33,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
 
         <activity
             android:name=".activity.SMS15Activity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"></activity>
 
-        </activity>
-
-        <receiver android:name=".activity.SmsReceiver" android:permission="android.permission.BROADCAST_SMS">
+        <receiver
+            android:name=".activity.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -48,21 +51,25 @@
 
         <!-- BroadcastReceiver that listens for incoming MMS messages -->
 
-        <receiver android:name=".activity.MmsReceiver"
+        <receiver
+            android:name=".activity.MmsReceiver"
             android:permission="android.permission.BROADCAST_WAP_PUSH">
             <intent-filter>
                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
         <!-- Activity that allows the user to send new SMS/MMS messages -->
 
-        <activity android:name=".activity.ComposeSmsActivity" >
+        <activity android:name=".activity.ComposeSmsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="sms" />
                 <data android:scheme="smsto" />
                 <data android:scheme="mms" />
@@ -71,18 +78,23 @@
         </activity>
 
         <!-- Service that delivers messages from the phone "quick response" -->
-        <service android:name=".activity.HeadlessSmsSendService"
-            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
-            android:exported="true" >
+        <service
+            android:name=".activity.HeadlessSmsSendService"
+            android:exported="true"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
             <intent-filter>
                 <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="sms" />
                 <data android:scheme="smsto" />
                 <data android:scheme="mms" />
                 <data android:scheme="mmsto" />
             </intent-filter>
         </service>
+
+        <activity android:name=".activity.UserAddActivity"></activity>
     </application>
 
 </manifest>
