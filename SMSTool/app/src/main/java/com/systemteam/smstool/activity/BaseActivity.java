@@ -1,5 +1,6 @@
 package com.systemteam.smstool.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -7,8 +8,10 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Window;
 
+import com.systemteam.smstool.R;
 import com.systemteam.smstool.view.ProgressDialogHelper;
 
 /**
@@ -28,8 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mProgressHelper = new ProgressDialogHelper(this);
     }
 
-    /*protected void initToolBar(Activity act, int titleId) {
-        mToolbar = (Toolbar) act.findViewById(R.id.tb_toolbar);
+    protected void initToolBar(Activity act, int titleId) {
+        mToolbar = (Toolbar) act.findViewById(R.id.toolbar);
         mToolbar.getVisibility();
         if (titleId == 0) {
             mToolbar.setTitle("");
@@ -42,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-            mToolbar.setNavigationIcon(R.drawable.btn_return);
+            mToolbar.setNavigationIcon(R.drawable.ic_back);
         }
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }*/
+    }
 
 
 	/**

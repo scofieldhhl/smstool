@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sms_send"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.systemteam.smstool.activity.SMSSendActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <TextView
+        android:id="@+id/tv_send_to"
+        style="@style/tv_size14_height_32"
+        android:text="@string/send_tip"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16"/>
+    <com.systemteam.smstool.view.IconEditTextView
+        android:id="@+id/iet_phonenum"
+        style="@style/iet_height_wrap_content_info"
+        app:edtIcon="@drawable/ic_phone_blue_24dp"
+        app:isPhoneNum="true"
+        app:maxLength="20" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/list_item_margin_8"
+            android:paddingRight="@dimen/list_item_margin_8"
+            android:orientation="vertical">
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/temperature_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:layout_marginLeft="@dimen/list_item_margin_12"
+                    android:text="@string/NO." />
+                <com.systemteam.smstool.view.IconEditTextView
+                    android:id="@+id/iet_way_tem"
+                    style="@style/iet_height_wrap_80_info"
+                    app:edtHint="@string/hint_way"
+                    app:isIconGone="true"
+                    app:isPhoneNum="true"
+                    app:edtIcon="@drawable/ic_name_blue_24dp" />
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:text="@string/temperature_way" />
+            </LinearLayout>
+            <TableLayout
+                android:id="@+id/tl_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/list_item_margin_8"
+                android:layout_marginRight="@dimen/list_item_margin_8"
+                android:shrinkColumns="0"
+                android:stretchColumns="2"
+                android:collapseColumns="3"
+                android:padding="3dip">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_up_tem"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_up_tem"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_up_open" />
+                    <LinearLayout
+                        android:id="@+id/ll_up_tem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/list_item_margin_24"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_value_tip" />
+                        <com.systemteam.smstool.view.IconEditTextView
+                            android:id="@+id/iet_up_value_tem"
+                            style="@style/iet_height_wrap_80_info"
+                            app:edtHint=""
+                            app:isIconGone="true"
+                            app:isPhoneNum="true"
+                            app:edtIcon="@drawable/ic_name_blue_24dp" />
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_unit" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_down_tem"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_down_tem"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_down_open" />
+                    <LinearLayout
+                        android:id="@+id/ll_down_tem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/list_item_margin_24"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_value_tip" />
+                        <com.systemteam.smstool.view.IconEditTextView
+                            android:id="@+id/iet_down_value_tem"
+                            style="@style/iet_height_wrap_80_info"
+                            app:edtIcon="@drawable/ic_phone_blue_24dp"
+                            app:isPhoneNum="true"
+                            app:isIconGone="true"
+                            app:maxLength="20" />
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_unit" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/voltage_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:layout_marginLeft="@dimen/list_item_margin_12"
+                    android:text="@string/NO." />
+                <com.systemteam.smstool.view.IconEditTextView
+                    android:id="@+id/iet_way_vol"
+                    style="@style/iet_height_wrap_80_info"
+                    app:edtHint="@string/hint_voltage"
+                    app:isIconGone="true"
+                    app:isPhoneNum="true"
+                    app:edtIcon="@drawable/ic_name_blue_24dp" />
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:text="@string/voltage_way" />
+            </LinearLayout>
+            <TableLayout
+                android:id="@+id/tl_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/list_item_margin_8"
+                android:layout_marginRight="@dimen/list_item_margin_8"
+                android:shrinkColumns="0"
+                android:stretchColumns="2"
+                android:collapseColumns="3"
+                android:padding="3dip">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_up_vol"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_up_vol"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_up_open" />
+                    <LinearLayout
+                        android:id="@+id/ll_up_vol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/list_item_margin_24"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_value_tip" />
+                        <com.systemteam.smstool.view.IconEditTextView
+                            android:id="@+id/iet_up_value_vol"
+                            style="@style/iet_height_wrap_80_info"
+                            app:edtHint=""
+                            app:isIconGone="true"
+                            app:isPhoneNum="true"
+                            app:edtIcon="@drawable/ic_name_blue_24dp" />
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_unit" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_down_vol"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_down_vol"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_down_open" />
+                    <LinearLayout
+                        android:id="@+id/ll_down_vol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/list_item_margin_24"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_value_tip" />
+                        <com.systemteam.smstool.view.IconEditTextView
+                            android:id="@+id/iet_down_value_vol"
+                            style="@style/iet_height_wrap_80_info"
+                            app:edtIcon="@drawable/ic_phone_blue_24dp"
+                            app:isPhoneNum="true"
+                            app:isIconGone="true"
+                            app:maxLength="20" />
+                        <TextView
+                            style="@style/tv_size14_height_32"
+                            android:text="@string/temperature_unit" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/tem_relay_title"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/text_size_16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:layout_marginLeft="@dimen/list_item_margin_12"
+                    android:text="@string/NO." />
+                <com.systemteam.smstool.view.IconEditTextView
+                    android:id="@+id/iet_way_relay_tem"
+                    style="@style/iet_height_wrap_80_info"
+                    app:edtHint="@string/hint_way"
+                    app:isIconGone="true"
+                    app:isPhoneNum="true"
+                    app:edtIcon="@drawable/ic_name_blue_24dp" />
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:text="@string/voltage_way" />
+            </LinearLayout>
+            <TableLayout
+                android:id="@+id/tl_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/list_item_margin_8"
+                android:layout_marginRight="@dimen/list_item_margin_8"
+                android:shrinkColumns="0"
+                android:stretchColumns="2"
+                android:collapseColumns="3"
+                android:visibility="gone"
+                android:padding="3dip">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_up_relay_tem"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_up_relay_tem"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_up_open" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_down_relay_tem"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_down_relay_tem"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_down_open" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/tv_size14_height_32"
+                android:text="@string/vol_relay_title"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/text_size_16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:layout_marginLeft="@dimen/list_item_margin_12"
+                    android:text="@string/NO." />
+                <com.systemteam.smstool.view.IconEditTextView
+                    android:id="@+id/iet_way_relay_vol"
+                    style="@style/iet_height_wrap_80_info"
+                    app:edtHint="@string/hint_way"
+                    app:isIconGone="true"
+                    app:isPhoneNum="true"
+                    app:edtIcon="@drawable/ic_name_blue_24dp" />
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:text="@string/voltage_way" />
+            </LinearLayout>
+            <TableLayout
+                android:id="@+id/tl_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/list_item_margin_8"
+                android:layout_marginRight="@dimen/list_item_margin_8"
+                android:shrinkColumns="0"
+                android:stretchColumns="2"
+                android:collapseColumns="3"
+                android:visibility="gone"
+                android:padding="3dip">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_up_relay_vol"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_up_relay_vol"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_up_open" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_down_relay_vol"
+                        android:checked="true"/>
+
+                    <TextView
+                        android:id="@+id/tv_down_relay_vol"
+                        style="@style/tv_size14_height_32"
+                        android:text="@string/temperature_down_open" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_make"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tl_info"
+        android:text="@string/make_order" />
+
+    <LinearLayout
+        android:id="@+id/ll_order_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="top">
+        <TextView
+            style="@style/tv_size14_height_32"
+            android:text="@string/send_tip2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"/>
+
+        <TextView
+            android:id="@+id/sms_content"
+            style="@style/tv_size14_height_32"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/tl_info"
+        android:text="@string/send_order" />
+</LinearLayout>

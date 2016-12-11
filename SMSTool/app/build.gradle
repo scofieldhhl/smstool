@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "com.systemteam.smstool"
         minSdkVersion 15
@@ -35,4 +35,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'org.greenrobot:greendao:3.2.0'
     compile files('libs/guava-16.0.1.jar')
+    compile 'com.android.support:design:25.0.1'
 }

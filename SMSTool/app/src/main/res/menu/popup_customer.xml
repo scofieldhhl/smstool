@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/popup_detail"
+        android:title="@string/pop_detail" />
+
+    <item
+        android:id="@+id/popup_update"
+        android:title="@string/pop_update" />
+
+    <item
+        android:id="@+id/popup_del"
+        android:title="@string/pop_del" />
+
+    <item
+        android:id="@+id/popup_send"
+        android:title="@string/pop_send" />
+
+</menu>

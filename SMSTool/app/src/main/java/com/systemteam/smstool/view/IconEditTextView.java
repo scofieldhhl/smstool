@@ -43,6 +43,10 @@ public class IconEditTextView extends FrameLayout implements View.OnFocusChangeL
         mContext = context;
     }
 
+    public EditText getmInput(){
+        return mInput;
+    }
+
     public IconEditTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
@@ -119,7 +123,7 @@ public class IconEditTextView extends FrameLayout implements View.OnFocusChangeL
                 mInput.setText("");
             }
         });
-        mInput.setOnFocusChangeListener(this);
+//        mInput.setOnFocusChangeListener(this);
         mInput.addTextChangedListener(new TextWatcher() {
             InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 

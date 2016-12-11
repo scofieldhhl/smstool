@@ -1,5 +1,14 @@
 <resources>
 
+    <attr format="reference" name="cardStyle"/>
+    <attr format="reference" name="accentColor"/>
+    <attr format="reference" name="iconColor"/>
+    <attr format="reference" name="windowBackground"/>
+    <attr format="reference" name="progressBackgroundColor"/>
+    <attr format="reference" name="progressDrawable"/>
+    <attr format="reference" name="progressDrawableWithBackground" />
+    <attr format="reference" name="stateSelector" />
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -74,4 +83,25 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+    <style name="AppTheme.FullScreen.Light" parent="ThemeBaseLight">
+    </style>
+
+    <style name="ThemeBaseLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="accentColor">@color/colorAccent</item>
+        <item name="iconColor">@android:color/white</item>
+        <item name="windowBackground">@color/window_background</item>
+        <item name="progressBackgroundColor">@color/progressBackgroundColorLight</item>
+        <item name="android:actionMenuTextColor">#329da3</item>
+    </style>
+
+    <style name="iet_height_wrap_80_info">
+        <item name="android:layout_width">@dimen/list_item_margin_80</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
 </resources>
