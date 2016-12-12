@@ -1,14 +1,15 @@
 package com.systemteam.smstool.activity;
 
-import android.app.AlertDialog;
+import android.Manifest;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -16,14 +17,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,6 +33,7 @@ import com.systemteam.smstool.util.LogTool;
 import com.systemteam.smstool.util.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -66,7 +64,7 @@ public class MainActivity extends BaseActivity
         smsObserver = new SmsObserver(this, smsHandler);
         getContentResolver().registerContentObserver(SMS_INBOX, true,
                 smsObserver);
-
+        checkSDK();
         initView();
     }
 
@@ -266,4 +264,39 @@ public class MainActivity extends BaseActivity
             Toast.makeText(MainActivity.this, "success!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void checkSDK() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            int Permission1 = checkSelfPermission(Manifest.permission.READ_SMS);
+            int Permission2 = checkSelfPermission(Manifest.permission.SEND_SMS);
+            int Permission3 = checkSelfPermission(Manifest.permission.RECEIVE_SMS);
+            int Permission4 = checkSelfPermission(Manifest.permission.RECEIVE_MMS);
+            int Permission5 = checkSelfPermission(Manifest.permission.READ_CONTACTS);
+
+
+            List<String> permissions = new ArrayList<String>();
+            if (Permission1 != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.READ_SMS);
+            }
+            if (Permission2 != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.SEND_SMS);
+            }
+            if (Permission3 != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.RECEIVE_SMS);
+            }
+            if (Permission4 != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.RECEIVE_MMS);
+            }
+            if (Permission5 != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.READ_CONTACTS);
+            }
+            if (!permissions.isEmpty()) {
+                requestPermissions(permissions.toArray(new String[permissions.size()]), REQUEST_CODE_SOME_FEATURES_PERMISSIONS);
+            }
+
+        }
+    }
+
+    private final int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 101;
 }
