@@ -1,15 +1,12 @@
 package com.systemteam.smstool.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,13 +16,9 @@ import com.systemteam.smstool.bean.Customer;
 import com.systemteam.smstool.dao.CustomerDao;
 import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.provider.db.DbUtil;
-import com.systemteam.smstool.util.LogTool;
-import com.systemteam.smstool.util.Utils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Administrator on 2016/12/11.

@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+    android:background="@drawable/list_item_bg"
     android:orientation="vertical"
     android:paddingBottom="6dp"
     android:paddingLeft="5dp"
@@ -53,10 +53,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
             android:foregroundTint="#434343"
             android:padding="5dp"
-            android:src="@drawable/apollo_holo_dark_overflow"
+            android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
             android:theme="@style/Theme.AppCompat" />
 
 

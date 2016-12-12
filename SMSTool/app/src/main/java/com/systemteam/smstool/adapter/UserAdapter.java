@@ -2,19 +2,17 @@ package com.systemteam.smstool.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.systemteam.smstool.R;
-import com.systemteam.smstool.activity.MainActivity;
+import com.systemteam.smstool.activity.SMSSendActivity;
 import com.systemteam.smstool.activity.UserAddActivity;
 import com.systemteam.smstool.bean.Customer;
 import com.systemteam.smstool.provider.db.CustomerHelper;
@@ -104,6 +102,11 @@ public class UserAdapter extends BaseAdapter {
                                 mHelper.delete(customer);
                                 mData.remove(customer);
                                 notifyDataSetChanged();
+                                break;
+                            case R.id.popup_send:
+                                Intent intentSend = new Intent(mContext, SMSSendActivity.class);
+                                intentSend.putExtra(UserAddActivity.ID, customer.getId());
+                                mContext.startActivity(intentSend);
                                 break;
 
                         }

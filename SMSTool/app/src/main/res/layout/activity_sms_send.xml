@@ -400,6 +400,8 @@
         android:id="@+id/btn_make"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/list_item_margin_12"
+        android:layout_marginBottom="@dimen/list_item_margin_12"
         android:layout_below="@id/tl_info"
         android:text="@string/make_order" />
 
@@ -417,8 +419,9 @@
             android:textSize="@dimen/text_size_16"/>
 
         <TextView
-            android:id="@+id/sms_content"
+            android:id="@+id/tv_sms_content"
             style="@style/tv_size14_height_32"
+            android:layout_height="@dimen/item_height"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textColor="@color/black"
@@ -429,6 +432,8 @@
         android:id="@+id/btn_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/list_item_margin_12"
+        android:layout_marginBottom="@dimen/list_item_margin_12"
         android:visibility="gone"
         android:layout_below="@id/tl_info"
         android:text="@string/send_order" />

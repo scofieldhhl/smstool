@@ -57,7 +57,7 @@
     <string name="pop_detail">详情</string>
     <string name="pop_update">修改</string>
     <string name="pop_del">删除</string>
-    <string name="pop_send">发送</string>
+    <string name="pop_send">发送内容</string>
 
     <string name="send_tip">发送至：</string>
     <string name="send_tip1" formatted="false">发送至：  %s( %s )</string>

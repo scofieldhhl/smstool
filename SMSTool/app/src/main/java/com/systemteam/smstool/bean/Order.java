@@ -6,8 +6,8 @@ package com.systemteam.smstool.bean;
 
 public class Order {
     public int way = -1;
-    public boolean isUp;
-    public boolean isDown;
-    public int upValue;
-    public int downValue;
+    public boolean isUp = true;
+    public boolean isDown = true;
+    public String upValue;
+    public String downValue;
 }

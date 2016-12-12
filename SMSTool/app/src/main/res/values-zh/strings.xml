@@ -36,7 +36,7 @@
     <string name="tip">提示</string>
     <string name="user_exist">客户信息已存在!</string>
 
-    <string name="send_sms">发送短信</string>
+    <string name="send_sms">发送内容</string>
     <string name="init">正在加载数据…</string>
     <string name="data_null">没有查询到相关数据！</string>
     <string name="customer_null">没有客户数据，请添加客户信息！</string>

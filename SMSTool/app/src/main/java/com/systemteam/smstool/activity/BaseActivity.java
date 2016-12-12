@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (titleId == 0) {
             mToolbar.setTitle("");
         } else {
-            int titleColor = act.getResources().getColor(R.color.white);
+            int titleColor = Color.WHITE;
             mToolbar.setTitleTextColor(titleColor);
             mToolbar.setTitle(titleId);
         }
@@ -45,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-            mToolbar.setNavigationIcon(R.drawable.ic_back);
+            mToolbar.setNavigationIcon(R.drawable.ic_back_normal);
         }
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
