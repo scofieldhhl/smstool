@@ -87,4 +87,5 @@
     <string name="error_order">温度和电压设置路数不能同时为空！</string>
     <string name="make_order">生成指令</string>
     <string name="send_order">发送指令</string>
+    <string name="new_customer">新用户</string>
 </resources>

@@ -7,12 +7,12 @@
     <string name="total_blank">TOTAL: 0 INCOMING, 0 OUTGOING MESSAGES</string>
     <string name="total">TOTAL: %1$d INCOMING, %2$d OUTGOING MESSAGES</string>
 
-    <string name="sms_statistics">短信统计</string>
+    <string name="sms_statistics">信息统计</string>
     <string name="frm_dt">起始日期</string>
     <string name="to_dt">结束日期</string>
     <string name="pop_hlp_ttl">帮助</string>
     <string name="pop_abt_ttl">关于</string>
-    <string name="dev_name">营盘工作室</string>
+    <string name="dev_name">深圳营盘工作室</string>
     <string name="mail_id">$TBD$</string>
     <string name="frm_to_err">时间不可选</string>
     <string name="Future_Year">Future_Year</string>
@@ -36,6 +36,11 @@
     <string name="tip">提示</string>
     <string name="user_exist">客户信息已存在!</string>
 
+    <string name="search_customer">查询用户</string>
+    <string name="search_hint">按姓名或电话搜索</string>
+    <string name="search_null">没有查询到相关内容，请重试！</string>
+    <string name="search">查询</string>
+
     <string name="send_sms">发送内容</string>
     <string name="init">正在加载数据…</string>
     <string name="data_null">没有查询到相关数据！</string>
@@ -44,4 +49,38 @@
     <string name="sms_sent">发送(%d)</string>
     <string name="sms_recieved">接收(%d)</string>
     <string name="ok">确定</string>
+
+    <string name="pop_detail">详情</string>
+    <string name="pop_update">修改</string>
+    <string name="pop_del">删除</string>
+    <string name="pop_send">发送内容</string>
+
+    <string name="send_tip">发送至：</string>
+    <string name="send_tip1" formatted="false">发送至：  %s( %s )</string>
+    <string name="send_tip2">指令内容：</string>
+    <string name="NO.">第</string>
+    <string name="hint_way">1-5</string>
+    <string name="temperature_title">温度报警预定值设置</string>
+    <string name="temperature_way">路温度设置。</string>
+    <string name="temperature_up_open">上限设置开</string>
+    <string name="temperature_up_close">上限设置关</string>
+    <string name="temperature_value_tip">预警值：</string>
+    <string name="temperature_unit">°c</string>
+    <string name="temperature_down_open">下限设置开</string>
+    <string name="temperature_down_close">下限设置关</string>
+
+    <string name="hint_voltage">1-8</string>
+    <string name="voltage_title">电压报警预定值设置</string>
+    <string name="voltage_way">路电压设置。</string>
+    <string name="voltage_unit">V</string>
+
+    <string name="tem_relay_title">温度上下限报警时吸合继电器自控设置</string>
+    <string name="relay_way">路吸合继电器自控设置。</string>
+    <string name="vol_relay_title">电压上下限报警吸合继电器自控设置</string>
+
+    <string name="error_input">输入内容不正确，请重新输入！</string>
+    <string name="error_phone">电话不能为空！</string>
+    <string name="error_order">温度和电压设置路数不能同时为空！</string>
+    <string name="make_order">生成指令</string>
+    <string name="send_order">发送指令</string>
 </resources>

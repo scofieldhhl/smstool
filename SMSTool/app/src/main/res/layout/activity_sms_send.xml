@@ -211,7 +211,7 @@
                             app:edtIcon="@drawable/ic_name_blue_24dp" />
                         <TextView
                             style="@style/tv_size14_height_32"
-                            android:text="@string/temperature_unit" />
+                            android:text="@string/voltage_unit" />
                     </LinearLayout>
                 </TableRow>
 
@@ -247,7 +247,7 @@
                             app:maxLength="20" />
                         <TextView
                             style="@style/tv_size14_height_32"
-                            android:text="@string/temperature_unit" />
+                            android:text="@string/voltage_unit" />
                     </LinearLayout>
                 </TableRow>
             </TableLayout>

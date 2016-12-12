@@ -2,6 +2,8 @@ package com.systemteam.smstool.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -415,15 +417,23 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                         phoneNum = mCustomer.getPhoneNum();
                     }
                 }else {
+                    mCustomer = new Customer();
                     phoneNum = mIetPhone.getInputText();
                     if(phoneNum == null || TextUtils.isEmpty(phoneNum)){
                         Toast.makeText(mContext, getString(R.string.error_phone), Toast.LENGTH_SHORT).show();
                         return;
+                    }else {
+                        mCustomer = new Customer();
+                        mCustomer.setName(getString(R.string.new_customer));
+                        mCustomer.setPhoneNum(phoneNum);
                     }
                 }
-                //TODO 判断是否为新的联系人，yes 插入数据库
-                //TODO 发送短信
-                sendSMS(phoneNum, mOrderContent);
+                mHelper.saveOrUpdate(mCustomer);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    doSendSMSTo(phoneNum, mOrderContent);
+                }else {
+                    sendSMS(phoneNum, mOrderContent);
+                }
                 finish();
                 break;
         }
@@ -443,5 +453,16 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
         for (String text : divideContents) {
             smsManager.sendTextMessage(phoneNumber, null, text, null, null);
         }
+    }
+
+    /**
+     * 调起系统发短信功能
+     * @param phoneNumber
+     * @param message
+     */
+    public void doSendSMSTo(String phoneNumber,String message){
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+phoneNumber));
+        intent.putExtra("sms_body", message);
+        startActivity(intent);
     }
 }
