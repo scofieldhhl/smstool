@@ -128,16 +128,19 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
                 case 0:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.Name.like("%" + queryString + "%"))
+                            .orderDesc(CustomerDao.Properties.Time)
                             .list();
                     break;
                 case 1:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.PhoneNum.like("%" + queryString + "%"))
+                            .orderDesc(CustomerDao.Properties.Time)
                             .list();
                     break;
                 case 2:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.CompanyAddress.like("%" + queryString + "%"))
+                            .orderDesc(CustomerDao.Properties.Time)
                             .list();
                     break;
             }

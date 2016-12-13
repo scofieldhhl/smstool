@@ -151,7 +151,7 @@ public class SMS15Activity extends BaseActivity {
                         yeart = yeard;
                         montht = monthd;
                         dayt = dayd;
-                        dtvwt.setText(String.format(Locale.US, DATE_FORMAT, yeart, (montht + 1), (dayt + 1)));
+                        dtvwt.setText(String.format(Locale.US, DATE_FORMAT, yeart, (montht + 1), (dayt)));
                         ms_to = new Date(yeart - 1900, montht, dayt, 23, 59).getTime();
                         go();
                         //Log.d("sms8e", "dateset_tr_t_ex");
@@ -308,7 +308,7 @@ public class SMS15Activity extends BaseActivity {
         while (!cur.isAfterLast()) {
             nmbr = cur.getString(0);
 //            namestr = getnme(nmbr);
-            namestr = customer.getName() + "(" + nmbr + ")";
+            namestr = customer.getName() + "_" + nmbr;
             LogTool.d("PHONE:" + nmbr);
             LogTool.d("PHONE:" + nmbr.length());
             //Log.d("sms8e", "getnme_dn" + nmbr);
@@ -602,7 +602,18 @@ public class SMS15Activity extends BaseActivity {
             t3.setText(lst.get(j).rcvd_str);
             tl.addView(tr);*/
             Customer customer = new Customer();
-            customer.setName(lst.get(j).name_str);
+            String str = lst.get(j).name_str;
+            if(str != null){
+                String[] arrStr = str.split("_");
+                if(arrStr != null && arrStr.length > 1){
+                    customer.setName(arrStr[0]);
+                    customer.setPhoneNum(arrStr[1]);
+                }else {
+                    customer.setName(str);
+                }
+            }else {
+                customer.setName(str);
+            }
             customer.setSend(lst.get(j).sent_str);
             customer.setRecive(lst.get(j).rcvd_str);
             mCustomers.add(customer);

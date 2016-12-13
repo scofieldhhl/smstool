@@ -134,7 +134,7 @@ public class UserAddActivity extends BaseActivity implements View.OnClickListene
                 mCustomer.setHomeAddress(mIetHome.getInputText());
                 mCustomer.setCompanyAddress(mIetCompany.getInputText());
                 mCustomer.setRemarks(mIetRemark.getInputText());
-
+                mCustomer.setTime(new Date());
                 mHelper.saveOrUpdate(mCustomer);
                 Toast.makeText(UserAddActivity.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 mCustomer = null;

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.systemteam.smstool.provider.db.DbCore;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 /**
  * 类描述：
  * 创建人：Administrator
@@ -15,5 +17,7 @@ public class SMSToolApplication extends Application {
     public void onCreate() {
         super.onCreate();
         DbCore.init(this);
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES =true;
     }
 }

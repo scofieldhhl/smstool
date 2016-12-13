@@ -33,6 +33,7 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
         public final static Property HomeAddress = new Property(6, String.class, "homeAddress", false, "HOME_ADDRESS");
         public final static Property CompanyAddress = new Property(7, String.class, "companyAddress", false, "COMPANY_ADDRESS");
         public final static Property Remarks = new Property(8, String.class, "remarks", false, "REMARKS");
+        public final static Property Time = new Property(9, java.util.Date.class, "time", false, "TIME");
     }
 
 
@@ -56,7 +57,8 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
                 "\"SEX\" INTEGER NOT NULL ," + // 5: sex
                 "\"HOME_ADDRESS\" TEXT," + // 6: homeAddress
                 "\"COMPANY_ADDRESS\" TEXT," + // 7: companyAddress
-                "\"REMARKS\" TEXT);"); // 8: remarks
+                "\"REMARKS\" TEXT," + // 8: remarks
+                "\"TIME\" INTEGER);"); // 9: time
     }
 
     /** Drops the underlying database table. */
@@ -101,6 +103,11 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
         if (remarks != null) {
             stmt.bindString(9, remarks);
         }
+ 
+        java.util.Date time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(10, time.getTime());
+        }
     }
 
     @Override
@@ -139,6 +146,11 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
         if (remarks != null) {
             stmt.bindString(9, remarks);
         }
+ 
+        java.util.Date time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(10, time.getTime());
+        }
     }
 
     @Override
@@ -157,7 +169,8 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
             cursor.getShort(offset + 5) != 0, // sex
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // homeAddress
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // companyAddress
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // remarks
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // remarks
+            cursor.isNull(offset + 9) ? null : new java.util.Date(cursor.getLong(offset + 9)) // time
         );
         return entity;
     }
@@ -173,6 +186,7 @@ public class CustomerDao extends AbstractDao<Customer, Long> {
         entity.setHomeAddress(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setCompanyAddress(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setRemarks(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setTime(cursor.isNull(offset + 9) ? null : new java.util.Date(cursor.getLong(offset + 9)));
      }
     
     @Override

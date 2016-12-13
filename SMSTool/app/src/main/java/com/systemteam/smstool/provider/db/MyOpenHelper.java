@@ -45,6 +45,7 @@ package com.systemteam.smstool.provider.db;
 
 import android.content.Context;
 
+import com.systemteam.smstool.dao.CustomerDao;
 import com.systemteam.smstool.dao.DaoMaster;
 import com.systemteam.smstool.util.LogTool;
 
@@ -69,9 +70,9 @@ public class MyOpenHelper extends DaoMaster.OpenHelper {
             case 1:
                 //不能先删除表，否则数据都木了
 //                StudentDao.dropTable(db, true);
-//                TasksManagerModelDao.createTable(db, true);
+                CustomerDao.createTable(db, true);
                 // 加入新字段
-//                db.execSQL("ALTER TABLE 'TASKS_MANAGER_MODEL' ADD 'FORMAT' TEXT;");
+                db.execSQL("ALTER TABLE 'CUSTOMER' ADD 'TIME' INTEGER;");
                 break;
         }
 

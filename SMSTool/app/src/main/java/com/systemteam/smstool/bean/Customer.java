@@ -6,6 +6,8 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Transient;
 
+import java.util.Date;
+
 /**
  * 类描述：
  * 创建人：Administrator
@@ -24,15 +26,16 @@ public class Customer {
     public String homeAddress;
     public String companyAddress;
     public String remarks;// 备注
-
+    public Date time;
     @Transient
     public String send;
     @Transient
     public String recive;
-    @Generated(hash = 60584707)
+
+    @Generated(hash = 1936898182)
     public Customer(Long id, String name, String nickName, @NotNull String phoneNum,
             int age, boolean sex, String homeAddress, String companyAddress,
-            String remarks) {
+            String remarks, Date time) {
         this.id = id;
         this.name = name;
         this.nickName = nickName;
@@ -42,10 +45,12 @@ public class Customer {
         this.homeAddress = homeAddress;
         this.companyAddress = companyAddress;
         this.remarks = remarks;
+        this.time = time;
     }
     @Generated(hash = 60841032)
     public Customer() {
     }
+
     public Long getId() {
         return this.id;
     }
@@ -119,5 +124,11 @@ public class Customer {
 
     public boolean isSex() {
         return sex;
+    }
+    public Date getTime() {
+        return this.time;
+    }
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

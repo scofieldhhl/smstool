@@ -67,7 +67,7 @@
         android:layout_marginRight="8dp"
         android:foregroundTint="#434343"
         android:padding="5dp"
-        android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+        android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha_gray"
         android:theme="@style/Theme.AppCompat" />
 
 </LinearLayout>

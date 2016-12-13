@@ -413,7 +413,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center">
         <TextView
             style="@style/tv_size14_height_32"
@@ -442,7 +442,7 @@
         android:background="@drawable/btn_blue_48dp"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_16"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@id/tl_info"
         android:text="@string/send_order" />
 </LinearLayout>
