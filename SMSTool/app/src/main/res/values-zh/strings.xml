@@ -37,7 +37,6 @@
     <string name="user_exist">客户信息已存在!</string>
 
     <string name="search_customer">查询用户</string>
-    <string name="search_hint">按姓名或电话搜索</string>
     <string name="search_null">没有查询到相关内容，请重试！</string>
     <string name="search">查询</string>
 

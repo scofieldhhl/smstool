@@ -16,6 +16,7 @@ import com.systemteam.smstool.bean.Customer;
 import com.systemteam.smstool.dao.CustomerDao;
 import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.provider.db.DbUtil;
+import com.systemteam.smstool.util.LogTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,14 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
     private ListView mLvInfo;
     List<Customer> mCustomers;
     UserAdapter mAdpater;
+    private int mIndexSearch = 0;
+    CustomerHelper mHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_customer);
         initView();
+        initData();
     }
 
     @Override
@@ -53,7 +57,13 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
     @Override
     protected void initData() {
         mImm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mHelper = DbUtil.getCustomerHelper();
         mCustomers = new ArrayList<>();
+        mCustomers = mHelper.queryAll();
+        LogTool.d("size:" + mCustomers.size());
+        mAdpater = new UserAdapter(mContext, mCustomers);
+        mLvInfo.setAdapter(mAdpater);
+        mAdpater.notifyDataSetChanged();
     }
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -63,12 +73,15 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
         mSearchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
 
         mSearchView.setOnQueryTextListener(this);
-        mSearchView.setQueryHint(getString(R.string.search_hint));
+        mSearchView.setQueryHint(getString(R.string.search_hint_name));
 
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setIconified(false);
+        mSearchView.clearFocus();
+        hideInputManager();
 
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.menu_search), new MenuItemCompat.OnActionExpandListener() {
+        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.menu_search),
+                new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 return true;
@@ -87,53 +100,60 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        onQueryTextChange(query);
+        LogTool.d("query:" + query);
+//        onQueryTextChange(query);
+        search(query);
         hideInputManager();
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
+
+        return true;
+    }
+
+    private void search(String newText){
+        LogTool.d("newText:" + newText);
         if(mCustomers == null){
             mCustomers = new ArrayList<>();
         }
-        mCustomers.clear();
-        mAdpater = new UserAdapter(mContext, mCustomers);
         if (newText.equals(queryString)) {
-            return true;
+            return;
         }
         queryString = newText;
         if (!queryString.trim().equals("")) {
-            CustomerHelper mHelper = DbUtil.getCustomerHelper();
-            Long keyPhone;
-            try {
-                keyPhone = Long.parseLong(queryString);
-            } catch (NumberFormatException e) {
-                keyPhone = -1L;
-            }
-            if(keyPhone > 0){
-                mCustomers = mHelper.queryBuilder()
-                        .where(CustomerDao.Properties.PhoneNum.like("%"+queryString+"%"))
-                        .list();
-            }else {
-                mCustomers = mHelper.queryBuilder()
-                        .where(CustomerDao.Properties.Name.like("%"+queryString+"%"))
-                        .list();
+
+            switch (mIndexSearch) {
+                case 0:
+                    mCustomers = mHelper.queryBuilder()
+                            .where(CustomerDao.Properties.Name.like("%" + queryString + "%"))
+                            .list();
+                    break;
+                case 1:
+                    mCustomers = mHelper.queryBuilder()
+                            .where(CustomerDao.Properties.PhoneNum.like("%" + queryString + "%"))
+                            .list();
+                    break;
+                case 2:
+                    mCustomers = mHelper.queryBuilder()
+                            .where(CustomerDao.Properties.CompanyAddress.like("%" + queryString + "%"))
+                            .list();
+                    break;
             }
             if(mCustomers != null && mCustomers.size() > 0){
-                mAdpater = new UserAdapter(mContext, mCustomers);
-                mLvInfo.setAdapter(mAdpater);
-                mLvInfo.setDivider(getResources().getDrawable(R.drawable.xml_list_divider));
-                mLvInfo.setDividerHeight(1);
+                mAdpater.setmData(mCustomers);
                 mAdpater.notifyDataSetChanged();
             }else {
+                mCustomers.clear();
+                mAdpater.setmData(mCustomers);
+                mAdpater.notifyDataSetChanged();
                 Toast.makeText(mContext, getString(R.string.search_null), Toast.LENGTH_SHORT).show();
             }
         } else {
-            mCustomers.clear();
-            mAdpater.notifyDataSetChanged();
+//            mCustomers.clear();
+//            mAdpater.notifyDataSetChanged();
         }
-        return true;
     }
 
     public void hideInputManager() {
@@ -144,6 +164,27 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
             mSearchView.clearFocus();
 
 //            SearchHistory.getInstance(this).addSearchString(queryString);
+        }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_name:
+                mIndexSearch = 0;
+                mSearchView.setQueryHint(getString(R.string.search_hint_name));
+                return true;
+            case R.id.menu_phone:
+                mIndexSearch = 1;
+                mSearchView.setQueryHint(getString(R.string.search_hint_phone));
+                return true;
+            case R.id.menu_compay:
+                mIndexSearch = 2;
+                mSearchView.setQueryHint(getString(R.string.search_hint_compay));
+                return true;
+            default:
+                mIndexSearch = 0;
+                mSearchView.setQueryHint(getString(R.string.search_hint_name));
+                return false;
         }
     }
 }

@@ -14,5 +14,8 @@
         android:id="@+id/lv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/list_item_margin_8"
+        android:paddingTop="@dimen/list_item_margin_8"
+        android:divider="@null"
         android:layout_below="@id/toolbar"></ListView>
 </RelativeLayout>

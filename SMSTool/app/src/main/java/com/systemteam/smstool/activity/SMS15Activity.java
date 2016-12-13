@@ -12,24 +12,20 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.PhoneLookup;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.systemteam.smstool.R;
+import com.systemteam.smstool.adapter.UserAdapter;
 import com.systemteam.smstool.bean.Customer;
 import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.provider.db.DbUtil;
@@ -51,6 +47,9 @@ import java.util.Locale;
 public class SMS15Activity extends BaseActivity {
     String srt_ordr = SNT;
     boolean srt_typ = DEC;
+    private ListView mLvInfo;
+    List<Customer> mCustomers;
+    UserAdapter mAdpater;
 
     public class lst_str implements Comparable<lst_str> {
         String name_str, sent_str, rcvd_str;
@@ -253,10 +252,6 @@ public class SMS15Activity extends BaseActivity {
     }
 
     void tbl_clr() {
-        TableLayout table = (TableLayout) findViewById(R.id.val_tbl);
-        table.removeAllViews();
-        //Log.d("sms8e", "clear_tbl_dn");
-
 
     }
 
@@ -396,8 +391,7 @@ public class SMS15Activity extends BaseActivity {
         if ((ms_frm - ms_to) > 0) {
             frm_to_err();
             return;
-        } else
-            findViewById(R.id.frm_to_err).setVisibility(View.GONE);
+        }
         if (!srt_flg) {
 //            generate();
             new QueryData().execute();
@@ -437,11 +431,15 @@ public class SMS15Activity extends BaseActivity {
         mContext = this;
         initToolBar(this, R.string.sms_statistics);
         mProgressHelper = new ProgressDialogHelper(this);
+        mLvInfo = (ListView) findViewById(R.id.lv_list);
     }
 
     @Override
     protected void initData() {
-
+        mCustomers = new ArrayList<>();
+        mAdpater = new UserAdapter(mContext, mCustomers);
+        mLvInfo.setAdapter(mAdpater);
+        mAdpater.notifyDataSetChanged();
     }
 
     @Override
@@ -544,7 +542,7 @@ public class SMS15Activity extends BaseActivity {
         t1.setText(getString(R.string.sms_contact));
         t2.setText(getString(R.string.sms_sent, sntt));
         t3.setText(getString(R.string.sms_recieved, rcvt));
-        findViewById(R.id.frm_to_err).setVisibility(View.VISIBLE);
+        Toast.makeText(mContext, getString(R.string.frm_to_err), Toast.LENGTH_SHORT).show();
     }
 
     public void show() {
@@ -575,7 +573,7 @@ public class SMS15Activity extends BaseActivity {
         t2.setText(getString(R.string.sms_sent, sntt));
         t3.setText(getString(R.string.sms_recieved, rcvt));
         int j = 0, sz = lst.size();
-        TableLayout tl = (TableLayout) findViewById(R.id.val_tbl);
+        /*TableLayout tl = (TableLayout) findViewById(R.id.val_tbl);
         LayoutInflater inflater = getLayoutInflater();
         TableRow tr = (TableRow) inflater.inflate(R.layout.tbl_rw, tl, false);
 
@@ -589,9 +587,10 @@ public class SMS15Activity extends BaseActivity {
         t1.setText(getString(R.string.sms_contact));
         t2.setText(getString(R.string.sms_sent, sntt));
         t3.setText(getString(R.string.sms_recieved, rcvt));
-        tl.addView(tr);
+        tl.addView(tr);*/
+        mCustomers.clear();
         while (j < sz) {
-            tr = (TableRow) inflater.inflate(R.layout.tbl_rw, tl, false);
+            /*tr = (TableRow) inflater.inflate(R.layout.tbl_rw, tl, false);
             t1 = (TextView) tr.findViewById(R.id.contact);
             t2 = (TextView) tr.findViewById(R.id.sent);
             t3 = (TextView) tr.findViewById(R.id.recieved);
@@ -601,9 +600,17 @@ public class SMS15Activity extends BaseActivity {
             //Log.d("sms8e", lst.get(j).name_str + "_dn");
             t2.setText(lst.get(j).sent_str);
             t3.setText(lst.get(j).rcvd_str);
-            tl.addView(tr);
+            tl.addView(tr);*/
+            Customer customer = new Customer();
+            customer.setName(lst.get(j).name_str);
+            customer.setSend(lst.get(j).sent_str);
+            customer.setRecive(lst.get(j).rcvd_str);
+            mCustomers.add(customer);
             j++;
         }
+        mAdpater.setmData(mCustomers);
+        mAdpater.setmIsAction(false);
+        mAdpater.notifyDataSetChanged();
         //Log.d("sms8e", "shw_ex");
     }
 

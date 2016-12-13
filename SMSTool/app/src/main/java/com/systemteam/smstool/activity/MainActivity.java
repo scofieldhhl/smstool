@@ -62,8 +62,7 @@ public class MainActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         smsObserver = new SmsObserver(this, smsHandler);
-        getContentResolver().registerContentObserver(SMS_INBOX, true,
-                smsObserver);
+        getContentResolver().registerContentObserver(SMS_INBOX, true, smsObserver);
         checkSDK();
         initView();
     }
@@ -129,8 +128,6 @@ public class MainActivity extends BaseActivity
             }
             mAdpater = new UserAdapter(mContext, mCustomers);
             mLvInfo.setAdapter(mAdpater);
-            mLvInfo.setDivider(getResources().getDrawable(R.drawable.xml_list_divider));
-            mLvInfo.setDividerHeight(1);
             mAdpater.notifyDataSetChanged();
         }else {
             LogTool.e("no records!");

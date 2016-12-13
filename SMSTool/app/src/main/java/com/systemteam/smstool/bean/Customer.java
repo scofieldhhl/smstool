@@ -4,6 +4,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * 类描述：
@@ -23,6 +24,11 @@ public class Customer {
     public String homeAddress;
     public String companyAddress;
     public String remarks;// 备注
+
+    @Transient
+    public String send;
+    @Transient
+    public String recive;
     @Generated(hash = 60584707)
     public Customer(Long id, String name, String nickName, @NotNull String phoneNum,
             int age, boolean sex, String homeAddress, String companyAddress,
@@ -95,4 +101,23 @@ public class Customer {
         this.remarks = remarks;
     }
 
+    public String getRecive() {
+        return recive;
+    }
+
+    public void setRecive(String recive) {
+        this.recive = recive;
+    }
+
+    public String getSend() {
+        return send;
+    }
+
+    public void setSend(String send) {
+        this.send = send;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
 }

@@ -41,9 +41,12 @@
     <string name="user_exist">客户信息已存在!</string>
 
     <string name="search_customer">查询用户</string>
-    <string name="search_hint">按姓名或电话搜索</string>
+    <string name="search_hint_name">按姓名搜索</string>
+    <string name="search_hint_phone">按电话搜索</string>
+    <string name="search_hint_compay">按单位搜索</string>
     <string name="search_null">没有查询到相关内容，请重试！</string>
     <string name="search">查询</string>
+    <string name="more">更多</string>
 
     <string name="send_sms">发送内容</string>
     <string name="init">正在加载数据…</string>

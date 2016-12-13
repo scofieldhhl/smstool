@@ -5,6 +5,7 @@
     android:id="@+id/activity_sms_send"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.systemteam.smstool.activity.SMSSendActivity">
 
@@ -17,6 +18,8 @@
     <TextView
         android:id="@+id/tv_send_to"
         style="@style/tv_size14_height_32"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
         android:text="@string/send_tip"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_16"/>
@@ -61,7 +64,6 @@
                     android:text="@string/temperature_way" />
             </LinearLayout>
             <TableLayout
-                android:id="@+id/tl_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/list_item_margin_8"
@@ -169,7 +171,6 @@
                     android:text="@string/voltage_way" />
             </LinearLayout>
             <TableLayout
-                android:id="@+id/tl_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/list_item_margin_8"
@@ -279,7 +280,6 @@
                     android:text="@string/voltage_way" />
             </LinearLayout>
             <TableLayout
-                android:id="@+id/tl_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/list_item_margin_8"
@@ -398,10 +398,13 @@
 
     <Button
         android:id="@+id/btn_make"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/list_item_margin_180"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/list_item_margin_12"
-        android:layout_marginBottom="@dimen/list_item_margin_12"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_blue_48dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
         android:layout_below="@id/tl_info"
         android:text="@string/make_order" />
 
@@ -410,18 +413,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="top">
+        android:visibility="visible"
+        android:gravity="center">
         <TextView
             style="@style/tv_size14_height_32"
             android:text="@string/send_tip2"
             android:textColor="@color/black"
+            android:gravity="center"
             android:textSize="@dimen/text_size_16"/>
 
         <TextView
             android:id="@+id/tv_sms_content"
             style="@style/tv_size14_height_32"
             android:layout_height="@dimen/item_height"
+            android:gravity="center_vertical|left"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textColor="@color/black"
@@ -430,11 +435,14 @@
 
     <Button
         android:id="@+id/btn_send"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/list_item_margin_180"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/list_item_margin_12"
-        android:layout_marginBottom="@dimen/list_item_margin_12"
-        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_blue_48dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:visibility="visible"
         android:layout_below="@id/tl_info"
         android:text="@string/send_order" />
 </LinearLayout>

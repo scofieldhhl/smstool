@@ -135,9 +135,14 @@
 
     <Button
         android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/list_item_margin_180"
         android:layout_height="wrap_content"
         android:layout_below="@id/tl_info"
+        android:layout_marginTop="@dimen/list_item_margin_12"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_blue_48dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
         android:text="@string/submit" />
 
 </RelativeLayout>

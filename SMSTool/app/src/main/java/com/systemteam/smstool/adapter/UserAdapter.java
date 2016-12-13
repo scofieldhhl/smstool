@@ -29,6 +29,12 @@ public class UserAdapter extends BaseAdapter {
     private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
     private List<Customer> mData;
     private Context mContext;
+    private boolean mIsAction = true;
+
+    public void setmIsAction(boolean mIsAction) {
+        this.mIsAction = mIsAction;
+    }
+
     /**
      * 构造函数
      */
@@ -36,6 +42,10 @@ public class UserAdapter extends BaseAdapter {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.mData = list;
+    }
+
+    public void setmData(List<Customer> mData) {
+        this.mData = mData;
     }
 
     @Override
@@ -64,6 +74,8 @@ public class UserAdapter extends BaseAdapter {
             holder = new ViewHolder();
             /**得到各个控件的对象*/
             holder.title = (TextView) convertView.findViewById(R.id.tv_title);
+            holder.tvSend = (TextView) convertView.findViewById(R.id.tv_send);
+            holder.tvRevice = (TextView) convertView.findViewById(R.id.tv_recive);
             holder.info = (TextView) convertView.findViewById(R.id.tv_info);
             holder.popupMenu = (ImageView) convertView.findViewById(R.id.popup_menu);
             convertView.setTag(holder);//绑定ViewHolder对象
@@ -73,6 +85,13 @@ public class UserAdapter extends BaseAdapter {
         /**设置TextView显示的内容，即我们存放在动态数组中的数据*/
         holder.title.setText(mData.get(position).getName());
         holder.info.setText(mData.get(position).getPhoneNum());
+        holder.tvSend.setText(mData.get(position).getSend());
+        holder.tvRevice.setText(mData.get(position).getRecive());
+        if(mIsAction){
+            holder.popupMenu.setVisibility(View.VISIBLE);
+        }else {
+            holder.popupMenu.setVisibility(View.GONE);
+        }
         setOnPopupMenuListener(holder, position);
         return convertView;
     }
@@ -125,7 +144,7 @@ public class UserAdapter extends BaseAdapter {
  * 存放控件
  */
 class ViewHolder {
-    public TextView title;
+    public TextView title, tvSend, tvRevice;
     public TextView info;
     public ImageView popupMenu;
 }
