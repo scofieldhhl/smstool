@@ -6,6 +6,8 @@ import android.content.Context;
 import com.systemteam.smstool.R;
 import com.systemteam.smstool.bean.Customer;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by Administrator on 2016/12/11.
  */
@@ -13,6 +15,7 @@ import com.systemteam.smstool.bean.Customer;
 public class Utils {
     
     public static void showDetail(Context context, Customer customer){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         StringBuilder sbInfo = new StringBuilder();
         sbInfo.append(context.getString(R.string.name))
                 .append(customer.getName())
@@ -28,6 +31,12 @@ public class Utils {
                 .append("\n")
                 .append(context.getString(R.string.companyAddress))
                 .append(customer.getCompanyAddress())
+                .append("\n")
+                .append(context.getString(R.string.register))
+                .append(customer.getRegisterTime() == null ? "" : sdf.format(customer.getRegisterTime()))
+                .append("\n")
+                .append(context.getString(R.string.date_add))
+                .append(customer.getTime() == null ? "" : sdf.format(customer.getTime()))
                 .append("\n")
                 .append(context.getString(R.string.remarks))
                 .append(customer.getRemarks());

@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.systemteam.smstool.R;
 import com.systemteam.smstool.adapter.UserAdapter;
 import com.systemteam.smstool.bean.Customer;
+import com.systemteam.smstool.dao.CustomerDao;
 import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.provider.db.DbUtil;
 import com.systemteam.smstool.util.LogTool;
@@ -113,12 +114,14 @@ public class MainActivity extends BaseActivity
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateString = formatter.format(new Date());
         LogTool.d("dateString" + Long.parseLong(dateString));
-        if(Long.parseLong(dateString) > 20161217154658L){
+        if(Long.parseLong(dateString) > 20161224154658L){
             LogTool.e("time out");
             finish();
         }
         CustomerHelper mHelper = DbUtil.getCustomerHelper();
-        mCustomers = mHelper.queryAll();
+        mCustomers = mHelper.queryBuilder()
+                .orderAsc(CustomerDao.Properties.Name)
+                .list();
         if(mCustomers != null && mCustomers.size() > 0){
             String ITEM = "%s ( %s )";
             String[] arrContent = new String[mCustomers.size()];
@@ -147,7 +150,7 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -160,6 +163,7 @@ public class MainActivity extends BaseActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, UserAddActivity.class));
             return true;
         }
 

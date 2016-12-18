@@ -59,7 +59,9 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
         mImm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mHelper = DbUtil.getCustomerHelper();
         mCustomers = new ArrayList<>();
-        mCustomers = mHelper.queryAll();
+        mCustomers = mHelper.queryBuilder()
+                .orderAsc(CustomerDao.Properties.Name)
+                .list();
         LogTool.d("size:" + mCustomers.size());
         mAdpater = new UserAdapter(mContext, mCustomers);
         mLvInfo.setAdapter(mAdpater);
@@ -101,15 +103,15 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
     @Override
     public boolean onQueryTextSubmit(String query) {
         LogTool.d("query:" + query);
-//        onQueryTextChange(query);
-        search(query);
+        onQueryTextChange(query);
+//        search(query);
         hideInputManager();
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-
+        search(newText);
         return true;
     }
 
@@ -128,19 +130,19 @@ public class SearchCustomerActivity extends BaseActivity  implements SearchView.
                 case 0:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.Name.like("%" + queryString + "%"))
-                            .orderDesc(CustomerDao.Properties.Time)
+                            .orderDesc(CustomerDao.Properties.Name)
                             .list();
                     break;
                 case 1:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.PhoneNum.like("%" + queryString + "%"))
-                            .orderDesc(CustomerDao.Properties.Time)
+                            .orderDesc(CustomerDao.Properties.Name)
                             .list();
                     break;
                 case 2:
                     mCustomers = mHelper.queryBuilder()
                             .where(CustomerDao.Properties.CompanyAddress.like("%" + queryString + "%"))
-                            .orderDesc(CustomerDao.Properties.Time)
+                            .orderDesc(CustomerDao.Properties.Name)
                             .list();
                     break;
             }

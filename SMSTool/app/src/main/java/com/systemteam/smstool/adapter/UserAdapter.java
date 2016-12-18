@@ -1,6 +1,9 @@
 package com.systemteam.smstool.adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -106,7 +109,7 @@ public class UserAdapter extends BaseAdapter {
                 menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Customer customer = mData.get(position);
+                        final Customer customer = mData.get(position);
                         switch (item.getItemId()) {
                             case R.id.popup_detail:
                                 Utils.showDetail(mContext, customer);
@@ -117,10 +120,23 @@ public class UserAdapter extends BaseAdapter {
                                 mContext.startActivity(intent);
                                 break;
                             case R.id.popup_del:
-                                CustomerHelper mHelper = DbUtil.getCustomerHelper();
-                                mHelper.delete(customer);
-                                mData.remove(customer);
-                                notifyDataSetChanged();
+                                new AlertDialog.Builder(mContext)
+                                        .setTitle(mContext.getString(R.string.pop_del))
+                                        .setTitle(mContext.getString(R.string.pop_del_msg))
+                                        .setPositiveButton(mContext.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                CustomerHelper mHelper = DbUtil.getCustomerHelper();
+                                                mHelper.delete(customer);
+                                                mData.remove(customer);
+                                                notifyDataSetChanged();
+                                            }
+                                        })
+                                        .setNegativeButton(mContext.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            }
+                                        }).create().show();
                                 break;
                             case R.id.popup_send:
                                 Intent intentSend = new Intent(mContext, SMSSendActivity.class);

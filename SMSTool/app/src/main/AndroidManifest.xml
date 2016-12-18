@@ -17,24 +17,28 @@
         android:theme="@style/AppTheme.FullScreen.Light">
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SMS15Activity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" />
-
-        <activity android:name=".activity.UserAddActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activity.SMSSendActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity.SearchCustomerActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.SMS15Activity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UserAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SMSSendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SearchCustomerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.SMSDetailActivity"></activity>
     </application>
 
 </manifest>

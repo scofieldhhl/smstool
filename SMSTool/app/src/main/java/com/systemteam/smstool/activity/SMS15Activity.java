@@ -18,6 +18,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -289,6 +290,7 @@ public class SMS15Activity extends BaseActivity {
      * 获取数据
      */
     public void generate(Customer customer) {
+        nmbr = "";
         nmstr.clear();
         hsmp.clear();
         //Log.d("sms8e", "gen_en");
@@ -306,11 +308,8 @@ public class SMS15Activity extends BaseActivity {
         //Log.d("sms8e", "qr_dn");
         cur.moveToFirst();
         while (!cur.isAfterLast()) {
-            nmbr = cur.getString(0);
-//            namestr = getnme(nmbr);
+            nmbr = customer.getPhoneNum();
             namestr = customer.getName() + "_" + nmbr;
-            LogTool.d("PHONE:" + nmbr);
-            LogTool.d("PHONE:" + nmbr.length());
             //Log.d("sms8e", "getnme_dn" + nmbr);
             if (!nmstr.contains(namestr)) {
                 nmstr.add(namestr);
@@ -328,6 +327,28 @@ public class SMS15Activity extends BaseActivity {
             cur.moveToNext();
         }
         //Log.d("sms8e", "hsmp_dn");
+        if(nmstr.size() == 0){
+            cur = getContentResolver().query(Uri.parse("content://sms/inbox"), columns, "address=? AND date BETWEEN " + ms_frm + " AND " + ms_to + ") GROUP BY (address),(type",
+                    new String[]{"+86" + customer.getPhoneNum()}, "address");
+            cur.moveToFirst();
+            while (!cur.isAfterLast()) {
+                nmbr = customer.getPhoneNum();
+                namestr = customer.getName() + "_" + nmbr;
+                if (!nmstr.contains(namestr)) {
+                    nmstr.add(namestr);
+                }
+                val = cur.getString(1);
+                cnt = cur.getString(2);
+                k = new Pair<>(namestr, val);
+                if (hsmp.containsKey(k)) {
+                    hsmp.put(k, String.valueOf(Integer.decode(hsmp.get(k)) + Integer.decode(cnt)));
+                } else {
+                    hsmp.put(k, cnt);
+                }
+                i++;
+                cur.moveToNext();
+            }
+        }
         for (int i = 0; i < nmstr.size(); i++) {
             String rcv = "", snt = "";
             rcv = hsmp.get(new Pair<>(nmstr.get(i), REC));
@@ -388,6 +409,9 @@ public class SMS15Activity extends BaseActivity {
         //Log.d("sms8e", "go_en");
         tbl_clr();
         //Log.d("sms8e", "clr_dn");
+        if(ms_to == 0 || ms_frm == 0){
+            return;
+        }
         if ((ms_frm - ms_to) > 0) {
             frm_to_err();
             return;
@@ -432,6 +456,16 @@ public class SMS15Activity extends BaseActivity {
         initToolBar(this, R.string.sms_statistics);
         mProgressHelper = new ProgressDialogHelper(this);
         mLvInfo = (ListView) findViewById(R.id.lv_list);
+        mLvInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(SMS15Activity.this, SMSDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("customer", mCustomers.get(i));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

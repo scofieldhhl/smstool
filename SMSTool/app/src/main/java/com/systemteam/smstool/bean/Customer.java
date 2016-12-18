@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Transient;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,9 @@ import java.util.Date;
  * 创建时间：2016/12/5 19:52
  */
 @Entity
-public class Customer {
+public class Customer implements Serializable {
+    @Transient
+    private static final long serialVersionUID = -8940196742313994740L;
     @Id
     public Long id;
     public String name;
@@ -26,16 +29,17 @@ public class Customer {
     public String homeAddress;
     public String companyAddress;
     public String remarks;// 备注
-    public Date time;
+    public Date time;//创建时间
+    public Date registerTime;//注册时间
     @Transient
     public String send;
     @Transient
     public String recive;
 
-    @Generated(hash = 1936898182)
+    @Generated(hash = 441724340)
     public Customer(Long id, String name, String nickName, @NotNull String phoneNum,
             int age, boolean sex, String homeAddress, String companyAddress,
-            String remarks, Date time) {
+            String remarks, Date time, Date registerTime) {
         this.id = id;
         this.name = name;
         this.nickName = nickName;
@@ -46,6 +50,7 @@ public class Customer {
         this.companyAddress = companyAddress;
         this.remarks = remarks;
         this.time = time;
+        this.registerTime = registerTime;
     }
     @Generated(hash = 60841032)
     public Customer() {
@@ -130,5 +135,11 @@ public class Customer {
     }
     public void setTime(Date time) {
         this.time = time;
+    }
+    public Date getRegisterTime() {
+        return this.registerTime;
+    }
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
     }
 }

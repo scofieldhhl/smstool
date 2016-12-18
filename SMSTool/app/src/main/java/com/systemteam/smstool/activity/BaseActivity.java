@@ -56,6 +56,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
+    protected void initToolBar(Activity act, String title) {
+        mToolbar = (Toolbar) act.findViewById(R.id.toolbar);
+        mToolbar.getVisibility();
+        int titleColor = Color.WHITE;
+        mToolbar.setTitleTextColor(titleColor);
+        mToolbar.setTitle(title);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            mToolbar.setNavigationIcon(R.drawable.ic_back_normal);
+        }
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
 
 	/**
 	 * 初始化
