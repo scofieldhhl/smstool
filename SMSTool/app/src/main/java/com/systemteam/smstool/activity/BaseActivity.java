@@ -13,16 +13,21 @@ import android.view.View;
 import android.view.Window;
 
 import com.systemteam.smstool.R;
+import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.view.ProgressDialogHelper;
+
+import java.text.SimpleDateFormat;
 
 /**
  * Created by chenjiang on 2016/5/23.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-
+    protected String DATE_FORMAT = "%d/%d/%d";
     protected Toolbar mToolbar;
     protected Context mContext;
     protected ProgressDialogHelper mProgressHelper;
+    CustomerHelper mHelper;
+    SimpleDateFormat sdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,52 +1,39 @@
 package com.systemteam.smstool.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.systemteam.smstool.R;
-import com.systemteam.smstool.activity.SMSSendActivity;
-import com.systemteam.smstool.activity.UserAddActivity;
-import com.systemteam.smstool.bean.Customer;
-import com.systemteam.smstool.provider.db.CustomerHelper;
-import com.systemteam.smstool.provider.db.DbUtil;
-import com.systemteam.smstool.util.Utils;
+import com.systemteam.smstool.bean.SMSInfo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/11.
  */
 
-public class UserAdapter extends BaseAdapter {
-    private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
-    private List<Customer> mData;
+public class SMSAdapter extends BaseAdapter {
+    private LayoutInflater mInflater;
+    private List<SMSInfo> mData;
     private Context mContext;
-    private boolean mIsAction = true;
-
-    public void setmIsAction(boolean mIsAction) {
-        this.mIsAction = mIsAction;
-    }
 
     /**
      * 构造函数
      */
-    public UserAdapter(Context context, List<Customer> list) {
+    public SMSAdapter(Context context, List<SMSInfo> list) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.mData = list;
     }
 
-    public void setmData(List<Customer> mData) {
+    public void setmData(List<SMSInfo> mData) {
         this.mData = mData;
     }
 
@@ -85,20 +72,27 @@ public class UserAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();//取出ViewHolder对象
         }
         /**设置TextView显示的内容，即我们存放在动态数组中的数据*/
-        holder.title.setText(mData.get(position).getName());
-        holder.info.setText(mData.get(position).getPhoneNum());
-        holder.tvSend.setText(mData.get(position).getSend());
-        holder.tvRevice.setText(mData.get(position).getRecive());
-        if(mIsAction){
-            holder.popupMenu.setVisibility(View.VISIBLE);
-        }else {
-            holder.popupMenu.setVisibility(View.GONE);
-        }
-        setOnPopupMenuListener(holder, position);
+        holder.title.setText(mData.get(position).getPerson());
+        holder.info.setText(mData.get(position).getAddress());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date d = new Date(mData.get(position).getDate());
+        String strDate = dateFormat.format(d);
+        holder.tvRevice.setText(strDate);
+        holder.popupMenu.setVisibility(View.GONE);
+
+        /*String strType = "";
+        if (intType == 1) {
+            strType = "接收";
+        } else if (intType == 2) {
+            strType = "发送";
+        } else {
+            strType = "null";
+        }*/
+
         return convertView;
     }
 
-    private void setOnPopupMenuListener(ViewHolder itemHolder, final int position) {
+    /*private void setOnPopupMenuListener(ViewHolder itemHolder, final int position) {
 
         itemHolder.popupMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +102,7 @@ public class UserAdapter extends BaseAdapter {
                 menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        final Customer customer = mData.get(position);
+                        final SMSInfo customer = mData.get(position);
                         switch (item.getItemId()) {
                             case R.id.popup_detail:
                                 Utils.showDetail(mContext, customer);
@@ -151,7 +145,7 @@ public class UserAdapter extends BaseAdapter {
                 menu.show();
             }
         });
-    }
+    }*/
 
 }
 

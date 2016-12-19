@@ -131,7 +131,6 @@ public class SMS15Activity extends BaseActivity {
     boolean srt_flgn = false;
     boolean srt_flgs = true;
     boolean srt_flgr = false;
-    String DATE_FORMAT = "%d/%d/%d";
     public DatePickerDialog.OnDateSetListener frm_lstnr = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int yeard, int monthd, int dayd) {
             //Log.d("sms8e", "dateset_en");
@@ -303,7 +302,8 @@ public class SMS15Activity extends BaseActivity {
 
 		/*cur = getContentResolver().query(Uri.parse("content://sms/inbox"), columns, "address=? and read=?",
 				new String[] { "10086", "1" }, "date desc");*/
-        cur = getContentResolver().query(Uri.parse("content://sms/inbox"), columns, "address=? AND date BETWEEN " + ms_frm + " AND " + ms_to + ") GROUP BY (address),(type",
+        cur = getContentResolver().query(Uri.parse("content://sms/inbox"), columns,
+                "address=? AND date BETWEEN " + ms_frm + " AND " + ms_to + ") GROUP BY (address),(type",
                 new String[]{customer.getPhoneNum()}, "address");
         //Log.d("sms8e", "qr_dn");
         cur.moveToFirst();

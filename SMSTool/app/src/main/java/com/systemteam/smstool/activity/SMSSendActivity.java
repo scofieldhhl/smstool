@@ -39,14 +39,14 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
     Order mTemOrder, mVolOrder;
     LinearLayout mLlContentOrder;
 
-    private String FORMAT_ORDER_TEM = "L%d: %s, %s";
-    private String FORMAT_ORDER_VOL = "U%d: %s, %s";
+    private String FORMAT_ORDER_TEM = "%s: 上限%s, 下限%s";
+    private String FORMAT_ORDER_VOL = "%s: 上限%s, 下限%s";
     private String mOrderContent;
-    private String OFF = "OFF";
-    private String DEFAULT_UP_TEM = "O80";
+    private String OFF = "关";
+    private String DEFAULT_UP_TEM = "80";
     private String DEFAULT_DOWN_TEM = "-10";
-    private String DEFAULT_UP_VOL = "412";
-    private String DEFAULT_DOWN_VOL = "000";
+    private String DEFAULT_UP_VOL = "4.12";
+    private String DEFAULT_DOWN_VOL = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,13 +107,13 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (!b){
-                    int way;
+                    String way;
                     try {
-                        way = Integer.parseInt(mIetWayTem.getInputText());
+                        way = mIetWayTem.getInputText();
                     } catch (NumberFormatException e) {
-                        way = -1;
+                        way = "";
                     }
-                    if(way > 0 && way < 6){
+                    if(way != null && !TextUtils.isEmpty(way)){
                         mTemOrder.way = way;
                     }else {
                         Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -127,13 +127,13 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (!b){
-                    int way;
+                    String way;
                     try {
-                        way = Integer.parseInt(mIetWayVol.getInputText());
+                        way = mIetWayVol.getInputText();
                     } catch (NumberFormatException e) {
-                        way = -1;
+                        way = "";
                     }
-                    if(way > 0 && way < 9){
+                    if(way != null && !TextUtils.isEmpty(way)){
                         mVolOrder.way = way;
                     }else {
                         Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -258,28 +258,29 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
         mImm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
         switch (view.getId()){
             case R.id.btn_make:
-                int way;
+                String way = null;
                 try {
-                    way = Integer.parseInt(mIetWayTem.getInputText());
+                    mIetWayTem.getInputText();
                 } catch (NumberFormatException e) {
-                    way = -1;
+                    way = "";
                 }
-                if(way > 0 && way < 6){
+                if(way != null && !TextUtils.isEmpty(way)){
                     mTemOrder.way = way;
                 }
                 try {
-                    way = Integer.parseInt(mIetWayVol.getInputText());
+                    way = mIetWayVol.getInputText();
                 } catch (NumberFormatException e) {
-                    way = -1;
+                    way = "";
                 }
-                if(way > 0 && way < 9){
+                if(way != null && !TextUtils.isEmpty(way)){
                     mVolOrder.way = way;
                 }
-                if(mTemOrder.way < 0 && mVolOrder.way < 0){
+                if(mTemOrder.way != null && !TextUtils.isEmpty(mTemOrder.way)
+                        && mVolOrder.way != null && !TextUtils.isEmpty(mVolOrder.way)){
                     Toast.makeText(mContext, getString(R.string.error_order), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(mTemOrder.way != -1){
+                if(mTemOrder.way != null && !TextUtils.isEmpty(mTemOrder.way)){
                     if(mTemOrder.isUp){
                         String strUp = mIetUpTem.getInputText();
                         if(strUp == null || TextUtils.isEmpty(strUp)){
@@ -287,14 +288,15 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                         }else {
                             try {
                                 int up = Integer.parseInt(strUp);
-                                if(up == 0){
+                                /*if(up == 0){
                                     mTemOrder.upValue = "000";
                                 }else if(up > 0 && up < 10){
                                     mTemOrder.upValue = "00"+ String.valueOf(up);
                                 }else if(up > 9 && up < 100){
                                     mTemOrder.upValue = "0"+ String.valueOf(up);
-                                }else{
-                                    mTemOrder.upValue = String.valueOf(up);
+                                }else*/
+                                {
+                                    mTemOrder.upValue = String.valueOf(up) + "度";
                                 }
                             } catch (NumberFormatException e) {
                                 Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -312,7 +314,7 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                         }else {
                             try {
                                 int value = Integer.parseInt(str);
-                                if(value == -10){
+                                /*if(value == -10){
                                     mTemOrder.downValue = DEFAULT_DOWN_TEM;
                                 }else if(value > -10 && value < 0){
                                     mTemOrder.downValue = "0"+ String.valueOf(value);
@@ -322,8 +324,9 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                                     mTemOrder.downValue = "00"+ String.valueOf(value);
                                 }else if(value > 9 && value < 100){
                                     mTemOrder.downValue = "0"+ String.valueOf(value);
-                                }else{
-                                    mTemOrder.downValue = String.valueOf(value);
+                                }else*/
+                                {
+                                    mTemOrder.downValue = String.valueOf(value) + "度";
                                 }
                             } catch (NumberFormatException e) {
                                 Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -335,7 +338,7 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                     }
                 }
 
-                if(mVolOrder.way != -1){
+                if(mVolOrder.way != null && !TextUtils.isEmpty(mVolOrder.way)){
                     if(mVolOrder.isUp){
                         String str = mIetUpVol.getInputText();
                         if(str == null || TextUtils.isEmpty(str)){
@@ -343,10 +346,11 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                         }else {
                             try {
                                 int value = Integer.parseInt(str);
-                                if(value == 0){
+                                /*if(value == 0){
                                     mVolOrder.upValue = "000";
-                                }else{
-                                    mVolOrder.upValue = String.valueOf(value * 100);
+                                }else*/
+                                {
+                                    mVolOrder.upValue = String.valueOf(value) + "V";
                                 }
                             } catch (NumberFormatException e) {
                                 Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -364,10 +368,11 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                         }else {
                             try {
                                 int value = Integer.parseInt(str);
-                                if(value == 0){
+                                /*if(value == 0){
                                     mVolOrder.downValue = "000";
-                                }else{
-                                    mVolOrder.downValue = String.valueOf(value*100);
+                                }else*/
+                                {
+                                    mVolOrder.downValue = String.valueOf(value) + "V";
                                 }
                             } catch (NumberFormatException e) {
                                 Toast.makeText(mContext, getString(R.string.error_input), Toast.LENGTH_SHORT).show();
@@ -379,19 +384,19 @@ public class SMSSendActivity extends BaseActivity implements CompoundButton.OnCh
                     }
                 }
 
-                if(mTemOrder.way != -1){
-                    mOrderContent = String.format(Locale.US, FORMAT_ORDER_TEM, mTemOrder.way,
+                if(mTemOrder.way != null && !TextUtils.isEmpty(mTemOrder.way)){
+                    mOrderContent = String.format(Locale.US, FORMAT_ORDER_TEM, mTemOrder.way.toUpperCase(),
                             mTemOrder.upValue, mTemOrder.downValue);
                 }else {
                     mOrderContent = "";
                 }
-                if(mVolOrder.way != -1){
+                if(mVolOrder.way != null && !TextUtils.isEmpty(mVolOrder.way)){
                     if(mOrderContent != null && !TextUtils.isEmpty(mOrderContent)){
                         mOrderContent += "\n";
-                        mOrderContent += String.format(Locale.US, FORMAT_ORDER_VOL, mVolOrder.way,
+                        mOrderContent += String.format(Locale.US, FORMAT_ORDER_VOL, mTemOrder.way.toUpperCase(),
                                 mVolOrder.upValue, mVolOrder.downValue);
                     }else {
-                        mOrderContent = String.format(Locale.US, FORMAT_ORDER_VOL, mVolOrder.way,
+                        mOrderContent = String.format(Locale.US, FORMAT_ORDER_VOL, mTemOrder.way.toUpperCase(),
                                 mVolOrder.upValue, mVolOrder.downValue);
                     }
                 }else {

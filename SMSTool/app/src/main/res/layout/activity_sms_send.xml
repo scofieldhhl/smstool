@@ -55,9 +55,7 @@
                 <com.systemteam.smstool.view.IconEditTextView
                     android:id="@+id/iet_way_tem"
                     style="@style/iet_height_wrap_80_info"
-                    app:edtHint="@string/hint_way"
                     app:isIconGone="true"
-                    app:isPhoneNum="true"
                     app:edtIcon="@drawable/ic_name_blue_24dp" />
                 <TextView
                     style="@style/tv_size14_height_32"
@@ -87,6 +85,7 @@
                         android:id="@+id/tv_up_tem"
                         style="@style/tv_size14_height_32"
                         android:text="@string/temperature_up_open" />
+
                     <LinearLayout
                         android:id="@+id/ll_up_tem"
                         android:layout_width="wrap_content"
@@ -162,9 +161,7 @@
                 <com.systemteam.smstool.view.IconEditTextView
                     android:id="@+id/iet_way_vol"
                     style="@style/iet_height_wrap_80_info"
-                    app:edtHint="@string/hint_voltage"
                     app:isIconGone="true"
-                    app:isPhoneNum="true"
                     app:edtIcon="@drawable/ic_name_blue_24dp" />
                 <TextView
                     style="@style/tv_size14_height_32"

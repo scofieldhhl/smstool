@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.systemteam.smstool.R;
 import com.systemteam.smstool.bean.Customer;
 import com.systemteam.smstool.dao.CustomerDao;
-import com.systemteam.smstool.provider.db.CustomerHelper;
 import com.systemteam.smstool.provider.db.DbUtil;
 import com.systemteam.smstool.view.IconEditTextView;
 
@@ -34,9 +33,7 @@ public class UserAddActivity extends BaseActivity implements View.OnClickListene
     RadioButton mRbSexMan, mRbSexWo;
     Button mBtnSubmit, mIetRegister;
     Customer mCustomer;
-    CustomerHelper mHelper;
     InputMethodManager mImm;
-    SimpleDateFormat sdf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,7 +193,6 @@ public class UserAddActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
-    String DATE_FORMAT = "%d/%d/%d";
     public DatePickerDialog.OnDateSetListener frm_lstnr = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int yeard, int monthd, int dayd) {
                 yearf = yeard;

@@ -76,7 +76,7 @@
     <string name="temperature_up_open">上限设置开</string>
     <string name="temperature_up_close">上限设置关</string>
     <string name="temperature_value_tip">预警值：</string>
-    <string name="temperature_unit">°c</string>
+    <string name="temperature_unit">度</string>
     <string name="temperature_down_open">下限设置开</string>
     <string name="temperature_down_close">下限设置关</string>
 
