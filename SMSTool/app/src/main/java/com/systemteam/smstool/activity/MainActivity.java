@@ -114,10 +114,10 @@ public class MainActivity extends BaseActivity
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateString = formatter.format(new Date());
         LogTool.d("dateString" + Long.parseLong(dateString));
-        if(Long.parseLong(dateString) > 20161224154658L){
+        /*if(Long.parseLong(dateString) > 20170112154658L){
             LogTool.e("time out");
             finish();
-        }
+        }*/
         CustomerHelper mHelper = DbUtil.getCustomerHelper();
         mCustomers = mHelper.queryBuilder()
                 .orderAsc(CustomerDao.Properties.Name)

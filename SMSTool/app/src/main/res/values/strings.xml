@@ -1,100 +1,100 @@
 <resources>
-    <string name="app_name">智能查询</string>
+    <string name="app_name">SMSTool</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">设置</string>
+    <string name="action_settings">Setting</string>
 
     <string name="spinnerTitle">Retrieving Contacts</string>
     <string name="blank_photo">blank photo</string>
     <string name="total_blank">TOTAL: 0 INCOMING, 0 OUTGOING MESSAGES</string>
     <string name="total">TOTAL: %1$d INCOMING, %2$d OUTGOING MESSAGES</string>
 
-    <string name="sms_statistics">信息统计</string>
-    <string name="frm_dt">起始日期</string>
-    <string name="to_dt">结束日期</string>
-    <string name="pop_hlp_ttl">帮助</string>
-    <string name="pop_abt_ttl">关于</string>
-    <string name="dev_name">深圳营盘工作室</string>
+    <string name="sms_statistics">SMS</string>
+    <string name="frm_dt">Start Date</string>
+    <string name="to_dt">End Date</string>
+    <string name="pop_hlp_ttl">Help</string>
+    <string name="pop_abt_ttl">About</string>
+    <string name="dev_name">SystemStudio</string>
     <string name="mail_id">$TBD$</string>
-    <string name="frm_to_err">时间不可选</string>
+    <string name="frm_to_err">Date not enable!</string>
     <string name="Future_Year">Future_Year</string>
     <string name="Future_Month">Future_Month</string>
     <string name="Future_Day">Future_Day</string>
 
-    <string name="add_customer">新增用户</string>
-    <string name="customer">用户信息</string>
-    <string name="name">姓名:</string>
-    <string name="name_null">姓名不能为空!</string>
-    <string name="phoneNum">电话:</string>
-    <string name="phone_null">电话不能为空!</string>
-    <string name="sex">性别:</string>
-    <string name="sex_man">男</string>
-    <string name="sex_woman">女</string>
-    <string name="homeAddress">住址:</string>
-    <string name="companyAddress">单位:</string>
-    <string name="register">注册日期:</string>
-    <string name="date_add">添加日期:</string>
-    <string name="remarks">备注:</string>
-    <string name="submit">保存</string>
-    <string name="save_success">保存成功!</string>
-    <string name="tip">提示</string>
-    <string name="user_exist">客户信息已存在!</string>
+    <string name="add_customer">New User</string>
+    <string name="customer">User Info:</string>
+    <string name="name">Name:</string>
+    <string name="name_null">Name Cannot be null!</string>
+    <string name="phoneNum">Tel:</string>
+    <string name="phone_null">Tel cannot be null!</string>
+    <string name="sex">sex:</string>
+    <string name="sex_man">man</string>
+    <string name="sex_woman">weman</string>
+    <string name="homeAddress">Address:</string>
+    <string name="companyAddress">company:</string>
+    <string name="register">Date register:</string>
+    <string name="date_add">Date Add:</string>
+    <string name="remarks">Recommad:</string>
+    <string name="submit">Save</string>
+    <string name="save_success">Save Success!</string>
+    <string name="tip">Tips</string>
+    <string name="user_exist">User is exist!</string>
 
-    <string name="search_customer">查询用户</string>
-    <string name="search_hint_name">按姓名搜索</string>
-    <string name="search_hint_phone">按电话搜索</string>
-    <string name="search_hint_compay">按单位搜索</string>
-    <string name="search_null">没有查询到相关内容，请重试！</string>
-    <string name="search">查询</string>
-    <string name="more">更多</string>
+    <string name="search_customer">Search User</string>
+    <string name="search_hint_name">Search by name</string>
+    <string name="search_hint_phone">Search by telphone</string>
+    <string name="search_hint_compay">Search by company</string>
+    <string name="search_null">Do not find anything,please retry!</string>
+    <string name="search">Search</string>
+    <string name="more">More</string>
 
-    <string name="send_sms">发送内容</string>
-    <string name="init">正在加载数据…</string>
-    <string name="data_null">没有查询到相关数据！</string>
-    <string name="customer_null">没有客户数据，请添加客户信息！</string>
-    <string name="sms_contact">联系人</string>
-    <string name="sms_sent">发送(%d)</string>
-    <string name="sms_recieved">接收(%d)</string>
-    <string name="ok">确定</string>
-    <string name="cancel">取消</string>
+    <string name="send_sms">Send</string>
+    <string name="init">loading…</string>
+    <string name="data_null">Do not find anything!</string>
+    <string name="customer_null">there is no users,please add user!</string>
+    <string name="sms_contact">Contact</string>
+    <string name="sms_sent">send(%d)</string>
+    <string name="sms_recieved">recieved(%d)</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
 
-    <string name="pop_detail">详情</string>
-    <string name="pop_update">修改</string>
-    <string name="pop_del">删除</string>
-    <string name="pop_del_msg">确定删除该用户信息吗？</string>
-    <string name="pop_send">发送内容</string>
+    <string name="pop_detail">detail</string>
+    <string name="pop_update">update</string>
+    <string name="pop_del">delete</string>
+    <string name="pop_del_msg">Are you sure to delete the user?</string>
+    <string name="pop_send">Send</string>
 
-    <string name="send_tip">发送至：</string>
-    <string name="send_tip1" formatted="false">发送至：  %s( %s )</string>
-    <string name="send_tip2">指令内容：</string>
-    <string name="NO.">第</string>
+    <string name="send_tip">Send To：</string>
+    <string name="send_tip1" formatted="false">Send To：  %s( %s )</string>
+    <string name="send_tip2">Send SMS：</string>
+    <string name="NO.">No.</string>
     <string name="hint_way">1-5</string>
-    <string name="temperature_title">温度报警预定值设置</string>
-    <string name="temperature_way">路温度设置。</string>
-    <string name="temperature_up_open">上限设置开</string>
-    <string name="temperature_up_close">上限设置关</string>
-    <string name="temperature_value_tip">预警值：</string>
-    <string name="temperature_unit">度</string>
-    <string name="temperature_down_open">下限设置开</string>
-    <string name="temperature_down_close">下限设置关</string>
+    <string name="temperature_title">temperature alarm set value</string>
+    <string name="temperature_way">path temperature settings.</string>
+    <string name="temperature_up_open">upper limit set</string>
+    <string name="temperature_up_close">upper limit set</string>
+    <string name="temperature_value_tip">warning value:</string>
+    <string name="temperature_unit">degree</string>
+    <string name="temperature_down_open">lower limit set</string>
+    <string name="temperature_down_close"> lower limit set</string>
 
     <string name="hint_voltage">1-8</string>
-    <string name="voltage_title">电压报警预定值设置</string>
-    <string name="voltage_way">路电压设置。</string>
+    <string name="voltage_title">voltage alarm preset value set</string>
+    <string name="voltage_way">Path voltage setting.</string>
     <string name="voltage_unit">V</string>
 
-    <string name="tem_relay_title">温度上下限报警时吸合继电器自控设置</string>
-    <string name="relay_way">路吸合继电器自控设置。</string>
-    <string name="vol_relay_title">电压上下限报警吸合继电器自控设置</string>
+    <string name="tem_relay_title">the temperature limit alarm relay control set</string>
+    <string name="relay_way"> road relay control settings.</string>
+    <string name="vol_relay_title">voltage alarm relay control set</string>
 
-    <string name="error_input">输入内容不正确，请重新输入！</string>
-    <string name="error_phone">电话不能为空！</string>
-    <string name="error_order">温度和电压设置路数不能同时为空！</string>
-    <string name="make_order">生成指令</string>
-    <string name="send_order">发送指令</string>
-    <string name="new_customer">新用户</string>
+    <string name="error_input"> entry is incorrect, please re-enter!</string>
+    <string name="error_phone"> phone cannot be empty!</string>
+    <string name="error_order"> temperature and voltage setting number both cannot be empty!</string>
+    <string name="make_order">generate instruction</string>
+    <string name="send_order">send instruction</string>
+    <string name="new_customer">new user</string>
 
-    <string name="date_choice">请选择日期:</string>
+    <string name="date_choice">select date:</string>
 </resources>

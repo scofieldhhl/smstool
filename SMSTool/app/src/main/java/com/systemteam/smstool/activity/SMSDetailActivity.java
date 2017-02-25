@@ -10,9 +10,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,8 +34,10 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.systemteam.smstool.R.id.btn_date;
+import static com.systemteam.smstool.R.id.ibtn_next;
+import static com.systemteam.smstool.R.id.ibtn_pre;
 
-public class SMSDetailActivity extends BaseActivity {
+public class SMSDetailActivity extends BaseActivity implements View.OnClickListener{
     public static final int MSG_QUERYDATA = 0x123;
     public static final int ID_DIALOG_DETAIL = 998;
     final String SMS_URI_ALL = "content://sms/";
@@ -41,6 +45,7 @@ public class SMSDetailActivity extends BaseActivity {
     final String SMS_URI_SEND = "content://sms/sent";
     private Customer mCustomer;
     private Button mbtnDate;
+    private ImageButton mIbtnPre, mIbtnNext;
     private ListView mLvInfo;
     SMSAdapter mAdpater;
     long ms_frm, ms_to;
@@ -71,12 +76,11 @@ public class SMSDetailActivity extends BaseActivity {
         mContext = this;
         mProgressHelper = new ProgressDialogHelper(this);
         mbtnDate = (Button) findViewById(btn_date);
-        mbtnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(ID_DIALOG_DETAIL);
-            }
-        });
+        mIbtnPre = (ImageButton) findViewById(ibtn_pre);
+        mIbtnNext = (ImageButton) findViewById(ibtn_next);
+        mbtnDate.setOnClickListener(this);
+        mIbtnPre.setOnClickListener(this);
+        mIbtnNext.setOnClickListener(this);
         mLvInfo = (ListView)findViewById(R.id.lv_list);
     }
 
@@ -106,14 +110,6 @@ public class SMSDetailActivity extends BaseActivity {
         frm_lstnr.onDateSet(new DatePicker(this), year, month, day);//初始化时间
     }
 
-    public void ButtonOnClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.btn_register:
-                showDialog(ID_DIALOG_DETAIL);
-                break;
-        }
-    }
     public DatePickerDialog.OnDateSetListener frm_lstnr = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int yeard, int monthd, int dayd) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
@@ -131,6 +127,12 @@ public class SMSDetailActivity extends BaseActivity {
             ms_to = new Date(yeart - 1900, montht, dayt, 23, 59).getTime();
             d = new Date(ms_to);
             strDate = dateFormat.format(d);
+            long now = new Date().getTime();
+            if(now > ms_frm && now < ms_to){
+                mIbtnNext.setVisibility(View.INVISIBLE);
+            }else {
+                mIbtnNext.setVisibility(View.VISIBLE);
+            }
             LogTool.d("to:" + strDate);
             mHandler.sendEmptyMessage(MSG_QUERYDATA);
         }
@@ -230,6 +232,30 @@ public class SMSDetailActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        String strDate = String.valueOf(mbtnDate.getText());
+        switch (view.getId()){
+            case R.id.btn_date:
+                showDialog(ID_DIALOG_DETAIL);
+                break;
+            case R.id.ibtn_pre:
+                if(strDate != null && !TextUtils.isEmpty(strDate)){
+                    setPreOrNextDate(strDate, -1);
+                }else {
+                    Toast.makeText(mContext, mContext.getString(R.string.frm_to_err), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.ibtn_next:
+                if(strDate != null && !TextUtils.isEmpty(strDate)){
+                    setPreOrNextDate(strDate, 1);
+                }else {
+                    Toast.makeText(mContext, mContext.getString(R.string.frm_to_err), Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
     class QueryData extends AsyncTask<Void, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -257,6 +283,26 @@ public class SMSDetailActivity extends BaseActivity {
                 Toast.makeText(mContext, mContext.getString(R.string.data_null), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void setPreOrNextDate(String strDate, int space){
+        Calendar c = Calendar.getInstance();//获得一个日历的实例
+        Date date = null;
+        try{
+            date = sdf.parse(strDate);//初始日期
+        }catch(Exception e){
+
+        }
+        c.setTime(date);//设置日历时间
+        int daySet =c.get(Calendar.DATE);
+        c.set(Calendar.DATE,daySet + space);
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        yearf = yeart = year;
+        monthf = montht = month;
+        dayf = dayt = day;
+        frm_lstnr.onDateSet(new DatePicker(this), year, month, day);//初始化时间
     }
 
 }

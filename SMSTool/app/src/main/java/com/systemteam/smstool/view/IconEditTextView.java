@@ -105,7 +105,7 @@ public class IconEditTextView extends FrameLayout implements View.OnFocusChangeL
             mInput.setInputType(InputType.TYPE_CLASS_PHONE);//电话
         }
         else if(isNumeric){
-            mInput.setInputType(InputType.TYPE_CLASS_NUMBER);//数字
+            mInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_PHONE);//数字
         }
     }
 

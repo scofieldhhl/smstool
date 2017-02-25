@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.systemteam.smstool.R;
+import com.systemteam.smstool.activity.SMS15Activity;
+import com.systemteam.smstool.activity.SMSDetailActivity;
 import com.systemteam.smstool.activity.SMSSendActivity;
 import com.systemteam.smstool.activity.UserAddActivity;
 import com.systemteam.smstool.bean.Customer;
@@ -142,7 +145,13 @@ public class UserAdapter extends BaseAdapter {
                                 intentSend.putExtra(UserAddActivity.ID, customer.getId());
                                 mContext.startActivity(intentSend);
                                 break;
-
+                            case R.id.popup_statistics:
+                                Intent intentDetail = new Intent(mContext, SMSDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("customer", customer);
+                                intentDetail.putExtras(bundle);
+                                mContext.startActivity(intentDetail);
+                                break;
                         }
                         return false;
                     }

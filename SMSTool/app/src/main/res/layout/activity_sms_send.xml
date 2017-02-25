@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/list_item_margin_8"
             android:paddingRight="@dimen/list_item_margin_8"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
             <TextView
                 style="@style/tv_size14_height_32"
                 android:text="@string/temperature_title"
@@ -100,7 +101,7 @@
                             style="@style/iet_height_wrap_80_info"
                             app:edtHint=""
                             app:isIconGone="true"
-                            app:isPhoneNum="true"
+                            app:isNumeric="true"
                             app:edtIcon="@drawable/ic_name_blue_24dp" />
                         <TextView
                             style="@style/tv_size14_height_32"
@@ -135,7 +136,7 @@
                             android:id="@+id/iet_down_value_tem"
                             style="@style/iet_height_wrap_80_info"
                             app:edtIcon="@drawable/ic_phone_blue_24dp"
-                            app:isPhoneNum="true"
+                            app:isNumeric="true"
                             app:isIconGone="true"
                             app:maxLength="20" />
                         <TextView
@@ -200,13 +201,15 @@
                         <TextView
                             style="@style/tv_size14_height_32"
                             android:text="@string/temperature_value_tip" />
+
                         <com.systemteam.smstool.view.IconEditTextView
                             android:id="@+id/iet_up_value_vol"
                             style="@style/iet_height_wrap_80_info"
                             app:edtHint=""
                             app:isIconGone="true"
-                            app:isPhoneNum="true"
+                            app:isNumeric="true"
                             app:edtIcon="@drawable/ic_name_blue_24dp" />
+
                         <TextView
                             style="@style/tv_size14_height_32"
                             android:text="@string/voltage_unit" />
@@ -240,7 +243,7 @@
                             android:id="@+id/iet_down_value_vol"
                             style="@style/iet_height_wrap_80_info"
                             app:edtIcon="@drawable/ic_phone_blue_24dp"
-                            app:isPhoneNum="true"
+                            app:isNumeric="true"
                             app:isIconGone="true"
                             app:maxLength="20" />
                         <TextView
@@ -390,56 +393,56 @@
                         android:text="@string/temperature_down_open" />
                 </TableRow>
             </TableLayout>
+            <Button
+                android:id="@+id/btn_make"
+                android:layout_width="@dimen/list_item_margin_180"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_margin_12"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/btn_blue_48dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16"
+                android:layout_below="@id/tl_info"
+                android:text="@string/make_order" />
+
+            <LinearLayout
+                android:id="@+id/ll_order_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:gravity="center">
+                <TextView
+                    style="@style/tv_size14_height_32"
+                    android:text="@string/send_tip2"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_16"/>
+
+                <TextView
+                    android:id="@+id/tv_sms_content"
+                    style="@style/tv_size14_height_32"
+                    android:layout_height="@dimen/item_height"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="@dimen/list_item_margin_180"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/list_item_margin_12"
+                android:layout_marginBottom="@dimen/btn_height_40"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/btn_blue_48dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="gone"
+                android:layout_below="@id/tl_info"
+                android:text="@string/send_order" />
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btn_make"
-        android:layout_width="@dimen/list_item_margin_180"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/list_item_margin_12"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_blue_48dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_16"
-        android:layout_below="@id/tl_info"
-        android:text="@string/make_order" />
-
-    <LinearLayout
-        android:id="@+id/ll_order_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:gravity="center">
-        <TextView
-            style="@style/tv_size14_height_32"
-            android:text="@string/send_tip2"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:textSize="@dimen/text_size_16"/>
-
-        <TextView
-            android:id="@+id/tv_sms_content"
-            style="@style/tv_size14_height_32"
-            android:layout_height="@dimen/item_height"
-            android:gravity="center_vertical|left"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16"/>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="@dimen/list_item_margin_180"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/list_item_margin_12"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_blue_48dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_16"
-        android:visibility="gone"
-        android:layout_below="@id/tl_info"
-        android:text="@string/send_order" />
 </LinearLayout>

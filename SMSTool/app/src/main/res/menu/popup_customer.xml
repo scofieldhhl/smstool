@@ -17,4 +17,8 @@
         android:id="@+id/popup_send"
         android:title="@string/pop_send" />
 
+    <item
+        android:id="@+id/popup_statistics"
+        android:title="@string/sms_statistics" />
+
 </menu>

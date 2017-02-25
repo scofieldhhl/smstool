@@ -1,4 +1,8 @@
 <resources>
+    <string name="app_name">智能查询</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">设置</string>
 
@@ -30,6 +34,8 @@
     <string name="sex_woman">女</string>
     <string name="homeAddress">住址:</string>
     <string name="companyAddress">单位:</string>
+    <string name="register">注册日期:</string>
+    <string name="date_add">添加日期:</string>
     <string name="remarks">备注:</string>
     <string name="submit">保存</string>
     <string name="save_success">保存成功!</string>
@@ -37,8 +43,12 @@
     <string name="user_exist">客户信息已存在!</string>
 
     <string name="search_customer">查询用户</string>
+    <string name="search_hint_name">按姓名搜索</string>
+    <string name="search_hint_phone">按电话搜索</string>
+    <string name="search_hint_compay">按单位搜索</string>
     <string name="search_null">没有查询到相关内容，请重试！</string>
     <string name="search">查询</string>
+    <string name="more">更多</string>
 
     <string name="send_sms">发送内容</string>
     <string name="init">正在加载数据…</string>
@@ -48,10 +58,12 @@
     <string name="sms_sent">发送(%d)</string>
     <string name="sms_recieved">接收(%d)</string>
     <string name="ok">确定</string>
+    <string name="cancel">取消</string>
 
     <string name="pop_detail">详情</string>
     <string name="pop_update">修改</string>
     <string name="pop_del">删除</string>
+    <string name="pop_del_msg">确定删除该用户信息吗？</string>
     <string name="pop_send">发送内容</string>
 
     <string name="send_tip">发送至：</string>
@@ -82,4 +94,7 @@
     <string name="error_order">温度和电压设置路数不能同时为空！</string>
     <string name="make_order">生成指令</string>
     <string name="send_order">发送指令</string>
+    <string name="new_customer">新用户</string>
+
+    <string name="date_choice">请选择日期:</string>
 </resources>
